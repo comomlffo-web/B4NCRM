@@ -44,7 +44,11 @@
         <div class="top-actions">
           <button class="icon-btn">♧<span class="badge">6</span></button>
           <button class="icon-btn">▢</button>
-          <div class="profile-mini"><div class="avatar avatar-a"></div><div><strong>Dilani Salon</strong><small>Super Admin</small></div><span>⌄</span></div>
+          <div class="profile-mini auth-profile" id="authProfile">
+            <div class="avatar avatar-a"></div>
+            <div><strong id="authProfileName">B4N CRM</strong><small id="authProfileRole">Not signed in</small></div>
+            <button type="button" class="auth-top-button" id="authButton">Sign in</button>
+          </div>
         </div>
       </header>
 
@@ -182,5 +186,27 @@
     </main>
   </div>
 <script src="script.js"></script>
+
+  <div class="auth-modal-backdrop" id="authModal" hidden>
+    <section class="auth-modal" role="dialog" aria-modal="true" aria-labelledby="authTitle">
+      <button type="button" class="auth-close" id="authClose" aria-label="Close">×</button>
+      <div class="auth-brand"><div class="brand-mark"><i></i><i></i><i></i><i></i></div><span>B4N CRM</span></div>
+      <span class="auth-kicker">SECURE STAFF ACCESS</span>
+      <h2 id="authTitle">Sign in to live intelligence</h2>
+      <p>Use the same staff email and password you use in the Book4Now Lovable application.</p>
+      <form id="authForm">
+        <label>Email
+          <input id="authEmail" type="email" autocomplete="username" required placeholder="staff@example.com">
+        </label>
+        <label>Password
+          <input id="authPassword" type="password" autocomplete="current-password" required minlength="6" placeholder="••••••••">
+        </label>
+        <button type="submit" class="auth-submit" id="authSubmit">Sign in</button>
+      </form>
+      <div class="auth-message" id="authMessage" role="status"></div>
+      <div class="auth-security-note">Protected analytics remain enforced by the existing Supabase RLS policies. B4NCRM does not store your password.</div>
+    </section>
+  </div>
+
 </body>
 </html>

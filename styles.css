@@ -115,3 +115,53 @@
   border-radius:12px;padding:10px 12px;font-size:10px;margin-top:10px
 }
 .salon-location .live-address{white-space:pre-line}
+
+
+/* ===== Secure staff authentication ===== */
+.auth-profile{gap:10px}
+.auth-top-button{
+  border:1px solid #d8e1e8;background:#fff;color:#244057;border-radius:10px;
+  padding:7px 10px;font-size:10px;font-weight:700;cursor:pointer;margin-left:3px
+}
+.auth-top-button.signed-in{background:#edf9f1;border-color:#ccefd9;color:#178d4e}
+.auth-modal-backdrop[hidden]{display:none}
+.auth-modal-backdrop{
+  position:fixed;inset:0;background:rgba(8,20,35,.48);backdrop-filter:blur(8px);
+  z-index:1000;display:grid;place-items:center;padding:20px
+}
+.auth-modal{
+  width:min(430px,100%);background:#fff;border-radius:24px;padding:28px;
+  position:relative;box-shadow:0 30px 90px rgba(15,23,42,.24);border:1px solid #e6edf2
+}
+.auth-close{
+  position:absolute;right:16px;top:14px;border:0;background:#f4f7f8;color:#567;
+  width:32px;height:32px;border-radius:50%;font-size:20px;cursor:pointer
+}
+.auth-brand{display:flex;align-items:center;gap:9px;color:#0f5a7b;font:700 18px Manrope;margin-bottom:20px}
+.auth-kicker{font-size:9px;color:#159653;font-weight:800;letter-spacing:.12em}
+.auth-modal h2{font:700 24px Manrope;margin:8px 0 8px;color:#0f172a}
+.auth-modal>p{font-size:12px;line-height:1.55;color:#64748b;margin:0 0 20px}
+.auth-modal form{display:grid;gap:14px}
+.auth-modal label{font-size:10px;font-weight:700;color:#43586b;display:grid;gap:6px}
+.auth-modal input{
+  width:100%;height:44px;border:1px solid #d7e0e7;border-radius:11px;padding:0 12px;
+  outline:0;background:#fbfdfd;color:#0f172a
+}
+.auth-modal input:focus{border-color:#2fb765;box-shadow:0 0 0 3px rgba(47,183,101,.12)}
+.auth-submit{
+  margin-top:4px;height:44px;border:0;border-radius:12px;background:linear-gradient(180deg,#36c771,#28ae5f);
+  color:#fff;font-weight:800;cursor:pointer
+}
+.auth-submit:disabled{opacity:.6;cursor:wait}
+.auth-message{min-height:18px;margin-top:12px;font-size:11px;color:#64748b}
+.auth-message.error{color:#dc2626}
+.auth-message.success{color:#168b4c}
+.auth-security-note{
+  margin-top:15px;padding:10px 12px;background:#f6faf8;border-radius:10px;
+  color:#718398;font-size:9px;line-height:1.45
+}
+body.auth-open{overflow:hidden}
+@media(max-width:720px){
+  .auth-profile .avatar{display:none}
+  .auth-top-button{padding:7px 8px}
+}

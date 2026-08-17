@@ -1,29 +1,33 @@
-# B4N CRM — Live Intelligence API build
+# B4N CRM — Live API + Secure Staff Login
 
-This build connects the CRM frontend to:
+This build connects directly to the existing B4N Intelligence API and mirrors the Lovable app's existing Supabase email/password staff sign-in.
 
-`https://b4n-intelligence-api.comomlffo.workers.dev`
+## What changed
 
-## Live immediately
-- Salon name/address/latitude/longitude/Google Maps link
-- Live salon count
-- Live services
-- Menu relationship counts: services, add-ons, suggestions, product links
+- Public Geo + Services/Menu load automatically.
+- Revenue, Bookings, Customers, RFM and Staff remain protected.
+- A **Sign in** button now appears in the top-right.
+- Use the **same staff email/password** used by the Book4Now Lovable app.
+- After authentication, B4NCRM checks `user_roles` and only accepts:
+  - super_admin
+  - admin
+  - manager
+  - specialist
+  - worker
+- The Supabase access token is stored only in this browser's localStorage.
+- Passwords are sent directly to Supabase Auth and are never stored by B4NCRM.
 
-## Protected analytics
-Revenue, bookings, customers, RFM and staff endpoints remain protected by the existing Lovable/Supabase RLS.
+## Deployment
 
-The UI no longer presents demo protected numbers as live data. It displays `Protected` until an authenticated Supabase access token is available.
+Replace these files in the `B4NCRM` repository:
 
-Supported token storage for the next auth step:
-- `b4n_supabase_access_token`
-- `sb-wazhhgcjrstfrxbwtcvj-auth-token`
-
-## Deploy
-Replace the files in the `B4NCRM` GitHub repository with:
 - index.html
 - styles.css
 - script.js
 - README.md
 
-Commit in GitHub Desktop and push. Cloudflare's connected deployment should rebuild automatically.
+Commit and push with GitHub Desktop. Cloudflare should redeploy automatically.
+
+## Important
+
+The public Geo/Menu endpoints do not require login. Operational analytics use the logged-in user's JWT, so the existing Lovable/Supabase RLS policies remain authoritative.
