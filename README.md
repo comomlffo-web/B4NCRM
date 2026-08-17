@@ -1,29 +1,55 @@
-# B4NCRM Geo Analytics View Fix
+# B4NCRM — Complete Analytics Coverage Build
 
-## Problem
-`#geoView` was nested inside `#dashboardView`.
+This build makes every major analytics capability planned for B4N visibly discoverable in the CRM.
 
-The JavaScript correctly did:
-- hide Dashboard
-- show Geo
+## Visible analytics domains
+1. Customer Intelligence
+2. Revenue Intelligence
+3. Smart RFM
+4. Behavior Analytics
+5. Motivation Intelligence
+6. Trend Analysis
+7. Conversion / Abandonment / Friction
+8. Peak Times / Device Usage
+9. Menu & Navigation Intelligence
+10. Geo Analytics
+11. Commerce Analytics
+12. Workforce Analytics
+13. Marketing & Engagement Analytics
+14. Data Quality & Governance
+15. Executive dashboard / business summary
 
-But because Geo was a child of Dashboard, hiding Dashboard also hid Geo, resulting in a blank white page.
+## Menu Intelligence explicitly includes
+- Navigation Analysis
+- Menu Structure Intelligence
+- Menu Transition Analysis
+- behavior.menu_sequence_patterns
+- Menu Transition & Combination Pattern Intelligence
+- Service + Service
+- Service + Add-on
+- Service + Product
+- Product + Product
+- Support / Confidence / Lift
+- Menu confusion
+- Bundle opportunities
 
-## Fix
-`#dashboardView` is now closed before `#geoView`, so Dashboard and Geo Analytics are sibling views.
+## Funnel/Friction explicitly includes
+- Conversion Rate
+- Abandonment Rate
+- Revenue at Risk
+- Date/time incompatibility
+- Preferred staff unavailable
+- Capacity/duration conflicts
+- Recovery actions
+- Menu confusion
 
-No API, authentication, database, or CSS changes are required for this fix.
+## Status semantics
+- Live: public real source
+- Protected Live: real source after staff sign-in
+- Partial: part of the analytic is available today
+- Event Data Required: requires browser/booking telemetry not historically captured
+- API / Pipeline Pending: schema/model is designed but external API is not exposed yet
 
-## Deploy
-Replace these files in the B4NCRM GitHub repository:
-- index.html
-- script.js
-- styles.css
-- README.md
-
-Commit and push with GitHub Desktop.
-
-After Cloudflare redeploys, hard refresh:
-Cmd + Shift + R
-
-Then click **Geo Analytics**.
+## Data integrity
+Demo Geo percentages/rankings have been removed.
+Regional analytics are shown only when enough real multi-location data exists.

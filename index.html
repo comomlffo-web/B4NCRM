@@ -15,17 +15,25 @@
       <div class="brand"><div class="brand-mark"><i></i><i></i><i></i><i></i></div><span>B4N CRM</span></div>
       <nav class="side-nav">
         <a class="active" href="#dashboard" data-view="dashboard"><span>◫</span>Dashboard</a>
-        <a href="#"><span>♙</span>Customers</a>
-        <a href="#"><span>▣</span>Bookings</a>
-        <a href="#"><span>▤</span>Services</a>
-        <a href="#"><span>🛒</span>Commerce</a>
-        <a href="#"><span>◖</span>Marketing</a>
-        <a href="#"><span>◎</span>RFM & Segments</a>
-        <a href="#"><span>◔</span>Behavior</a>
-        <a href="#"><span>☼</span>Motivation</a>
+        <a href="#analytics" data-view="analytics"><span>✦</span>Analytics Hub</a>
+        <div class="nav-section-label">BUSINESS</div>
+        <a href="#customers" data-view="detail" data-domain="customers"><span>♙</span>Customer Intelligence</a>
+        <a href="#revenue" data-view="detail" data-domain="revenue"><span>▥</span>Revenue Intelligence</a>
+        <a href="#commerce" data-view="detail" data-domain="commerce"><span>🛒</span>Commerce Analytics</a>
+        <a href="#workforce" data-view="detail" data-domain="workforce"><span>♧</span>Workforce Analytics</a>
+        <a href="#engagement" data-view="detail" data-domain="engagement"><span>◖</span>Marketing & Engagement</a>
+        <div class="nav-section-label">CUSTOMER INTELLIGENCE</div>
+        <a href="#rfm" data-view="detail" data-domain="rfm"><span>◎</span>RFM & Segments</a>
+        <a href="#behavior" data-view="detail" data-domain="behavior"><span>◔</span>Behavior Analytics</a>
+        <a href="#motivation" data-view="detail" data-domain="motivation"><span>☼</span>Motivation</a>
+        <a href="#trend" data-view="detail" data-domain="trend"><span>↗</span>Trend Analysis</a>
+        <a href="#funnel" data-view="detail" data-domain="funnel"><span>▽</span>Conversion & Abandonment</a>
+        <a href="#peak" data-view="detail" data-domain="peak"><span>◷</span>Peak Times & Devices</a>
+        <a href="#menu-intelligence" data-view="detail" data-domain="menu"><span>⌘</span>Menu Intelligence</a>
         <a href="#geo" data-view="geo"><span>⌖</span>Geo Analytics</a>
+        <div class="nav-section-label">CONTROL</div>
+        <a href="#governance" data-view="detail" data-domain="governance"><span>◇</span>Data Quality & Governance</a>
         <a href="#"><span>◫</span>Reports</a>
-        <a href="#"><span>♧</span>Workforce</a>
         <a href="#"><span>⌘</span>Integrations</a>
         <a href="#"><span>⚙</span>Settings</a>
       </nav>
@@ -86,7 +94,7 @@
 
             <article class="card services-card"><div class="card-header"><div class="card-title">Live Service Catalogue <span class="live-source">LIVE</span></div><span id="menuApiStatus">Loading…</span></div><div id="menuSummary" class="menu-summary"></div><div id="servicesList"></div></article>
 
-            <article class="card rfm-card"><div class="card-header"><div class="card-title">RFM overview</div><span>All customers⌄</span></div><div class="rfm-wrap"><div class="donut"><div class="donut-hole"><strong>2,540</strong><small>Total customers</small></div></div><div class="legend"><p><i class="g1"></i>Champions <b>520</b></p><p><i class="g2"></i>Loyal <b>820</b></p><p><i class="g3"></i>Potential Loyalist <b>410</b></p><p><i class="g4"></i>At Risk <b>520</b></p><p><i class="g5"></i>Cannot Lose Them <b>270</b></p></div></div></article>
+            <article class="card rfm-card"><div class="card-header"><div class="card-title">RFM overview <span class="live-source">API</span></div><span id="rfmDashboardState">Protected</span></div><div class="rfm-wrap"><div class="donut"><div class="donut-hole"><strong>—</strong><small>Customers scored</small></div></div><div class="legend"><p><i class="g1"></i>Champions <b>—</b></p><p><i class="g2"></i>Loyal <b>—</b></p><p><i class="g3"></i>Potential Loyalist <b>—</b></p><p><i class="g4"></i>At Risk <b>—</b></p><p><i class="g5"></i>Cannot Lose <b>—</b></p></div></div></article>
 
             <article class="card funnel-card">
       <div class="card-header"><div class="card-title">Booking funnel <span class="live-source neutral">EVENT DATA</span></div><span>Not collected yet</span></div>
@@ -123,10 +131,69 @@
       </div>
     </article>
 
-            <article class="card staff-card"><div class="card-header"><div class="card-title">Top staff performance</div><span>This month⌄</span></div><div class="staff-row"><b class="rank one">1</b><div class="avatar avatar-b"></div><div><strong>Dilani Perera</strong><div class="progress"><span style="width:92%"></span></div></div><strong>LKR 1,540,000</strong></div><div class="staff-row"><b class="rank two">2</b><div class="avatar avatar-c"></div><div><strong>Naduni Silva</strong><div class="progress"><span style="width:74%"></span></div></div><strong>LKR 1,080,000</strong></div><div class="staff-row"><b class="rank three">3</b><div class="avatar avatar-d"></div><div><strong>Chamari Abeysekara</strong><div class="progress"><span style="width:63%"></span></div></div><strong>LKR 980,000</strong></div></article>
+            <article class="card staff-card"><div class="card-header"><div class="card-title">Staff Performance <span class="live-source">API</span></div><span id="staffDashboardState">Protected</span></div><div class="status-placeholder">Sign in to load live staff analytics.</div></article>
           </aside>
         </div>
         </div><!-- /dashboardView -->
+
+
+        <section id="analyticsView" class="view-panel analytics-hub-view" aria-label="B4N Analytics Hub">
+          <div class="intel-shell">
+            <div class="intel-header">
+              <div>
+                <span class="intel-eyebrow">B4N CUSTOMER & BUSINESS INTELLIGENCE</span>
+                <h1>Analytics Hub</h1>
+                <p>Every planned analytics capability in one governed intelligence catalogue.</p>
+              </div>
+              <div class="intel-legend">
+                <span class="status-chip live">Live</span>
+                <span class="status-chip protected">Protected Live</span>
+                <span class="status-chip partial">Partial</span>
+                <span class="status-chip event">Event Data Required</span>
+                <span class="status-chip pending">API / Pipeline Pending</span>
+              </div>
+            </div>
+
+            <div class="coverage-summary">
+              <article><span>Planned Domains</span><strong id="coverageDomainCount">15</strong></article>
+              <article><span>Visible in CRM</span><strong id="coverageVisibleCount">15</strong></article>
+              <article><span>Live / Partial</span><strong id="coverageLiveCount">—</strong></article>
+              <article><span>Requires Telemetry</span><strong id="coverageTelemetryCount">—</strong></article>
+            </div>
+
+            <div id="analyticsCoverageGrid" class="analytics-coverage-grid"></div>
+
+            <article class="intel-card architecture-card">
+              <div class="intel-card-head">
+                <div><strong>Intelligence Flow</strong><span>Target architecture</span></div>
+                <span class="status-chip live">Governed</span>
+              </div>
+              <div class="architecture-flow">
+                <b>Lovable Operational DB</b><i>→</i><b>Intelligence API</b><i>→</i><b>Customer / Business Analytics</b><i>→</i><b>Trend + NBA</b><i>→</i><b>CRM Actions</b>
+              </div>
+            </article>
+          </div>
+        </section>
+
+        <section id="detailView" class="view-panel analytics-detail-view" aria-label="Analytics detail">
+          <div class="intel-shell">
+            <div class="detail-header">
+              <button type="button" id="backToAnalytics" class="back-analytics">← Analytics Hub</button>
+              <div>
+                <span class="intel-eyebrow" id="detailEyebrow">B4N INTELLIGENCE</span>
+                <h1 id="detailTitle">Analytics</h1>
+                <p id="detailDescription"></p>
+              </div>
+              <span id="detailStatus" class="status-chip pending">Pending</span>
+            </div>
+            <div id="detailKpis" class="detail-kpi-grid"></div>
+            <div id="detailFeatureGrid" class="detail-feature-grid"></div>
+            <article class="intel-card">
+              <div class="intel-card-head"><div><strong>Data Readiness & Methodology</strong><span id="detailMethodologyLabel">Current state</span></div></div>
+              <div id="detailReadiness" class="readiness-box"></div>
+            </article>
+          </div>
+        </section>
 
         <section id="geoView" class="view-panel geo-view" aria-label="Geo Analytics">
           <div class="geo-shell">
@@ -155,21 +222,16 @@
             <div class="geo-main-grid">
               <div class="geo-stack">
                 <article class="geo-card">
-                  <div class="geo-card-head"><strong>Customers by Region</strong><span>Current</span></div>
-                  <div class="geo-donut-wrap"><div class="geo-donut"><b>24,589</b><small>Total</small></div></div>
-                  <div class="geo-legend">
-                    <div><i></i><span>Western</span><b>45.2%</b></div><div><i></i><span>Southern</span><b>18.7%</b></div><div><i></i><span>Central</span><b>12.9%</b></div><div><i></i><span>Northern</span><b>8.3%</b></div><div><i></i><span>Eastern</span><b>7.1%</b></div>
-                  </div>
+                  <div class="geo-card-head"><strong>Regional Customer Distribution</strong><span>Readiness</span></div>
+                  <div class="geo-empty-state"><b>Multi-location data required</b><p>Current source contains one mapped salon. Regional customer percentages will appear after multiple salons/branches and customer geography are connected.</p></div>
                 </article>
                 <article class="geo-card">
-                  <div class="geo-card-head"><strong>Revenue by Region</strong><span>LKR M</span></div>
-                  <div class="geo-bars">
-                    <div><i style="height:92%"></i><small>West</small></div><div><i style="height:78%"></i><small>South</small></div><div><i style="height:59%"></i><small>Central</small></div><div><i style="height:44%"></i><small>North</small></div><div><i style="height:33%"></i><small>East</small></div>
-                  </div>
+                  <div class="geo-card-head"><strong>Regional Revenue</strong><span>Readiness</span></div>
+                  <div class="geo-empty-state"><b>Not enough regional grain</b><p>Revenue-by-region will be calculated only from real salon/branch geography. No demo percentages are shown.</p></div>
                 </article>
-                <article class="geo-card geo-trend-card">
-                  <div class="geo-card-head"><strong>Booking Trend</strong><span>7 days</span></div>
-                  <svg viewBox="0 0 260 120" class="geo-line-chart" aria-label="Booking trend chart"><polyline points="0,72 40,53 75,61 110,31 145,48 180,27 220,38 260,18"/><polyline class="line-two" points="0,90 40,82 75,91 110,69 145,75 180,64 220,70 260,58"/></svg>
+                <article class="geo-card">
+                  <div class="geo-card-head"><strong>Geo Booking Trend</strong><span>Readiness</span></div>
+                  <div class="geo-empty-state"><b>Branch/location attribution required</b><p>Booking trend by geography becomes available when booking facts carry authoritative salon/branch location keys.</p></div>
                 </article>
               </div>
 
@@ -191,27 +253,26 @@
 
               <div class="geo-stack">
                 <article class="geo-card">
-                  <div class="geo-card-head"><strong>Revenue Contribution</strong><span>Region</span></div>
-                  <div class="geo-revenue-ring"><div><b>51.6%</b><small>Western</small></div></div>
-                  <div class="geo-legend compact"><div><i></i><span>Western</span><b>51.6%</b></div><div><i></i><span>Southern</span><b>19.3%</b></div><div><i></i><span>Central</span><b>12.4%</b></div><div><i></i><span>Northern</span><b>8.0%</b></div><div><i></i><span>Eastern</span><b>6.2%</b></div></div>
+                  <div class="geo-card-head"><strong>Geo Opportunity Intelligence</strong><span>Planned</span></div>
+                  <div class="geo-empty-state"><b>Opportunity model ready for multi-salon data</b><p>Planned signals: customer density, demand gap, conversion, revenue, capacity, RFM mix, churn risk and service affinity by geography.</p></div>
                 </article>
                 <article class="geo-card">
-                  <div class="geo-card-head"><strong>Top Performing Areas</strong><span>Growth</span></div>
-                  <div class="geo-ranking"><div><span>Colombo</span><b>LKR 1.25M</b><em>↑ 18.6%</em></div><div><span>Kandy</span><b>LKR 0.98M</b><em>↑ 15.2%</em></div><div><span>Negombo</span><b>LKR 0.77M</b><em>↑ 13.8%</em></div><div><span>Galle</span><b>LKR 0.64M</b><em>↑ 11.5%</em></div><div><span>Jaffna</span><b>LKR 0.51M</b><em>↑ 10.1%</em></div></div>
+                  <div class="geo-card-head"><strong>Top Performing Areas</strong><span>Live-data only</span></div>
+                  <div class="geo-empty-state"><b>Waiting for sufficient geographic coverage</b><p>Areas will be ranked only when real multi-location performance exists.</p></div>
                 </article>
               </div>
             </div>
 
             <div class="geo-bottom-grid">
               <article class="geo-card geo-salons-card">
-                <div class="geo-card-head"><strong>Salon Locations</strong><span id="salonLocationSubtitle">Demo locations · replace with live salon records</span></div>
+                <div class="geo-card-head"><strong>Salon Locations</strong><span id="salonLocationSubtitle">Live Lovable location records</span></div>
                 <div id="salonLocationList" class="salon-location-list"></div>
               </article>
               <article class="geo-card">
-                <div class="geo-card-head"><strong>Location Intelligence</strong><span>Opportunity</span></div>
-                <div class="geo-insight"><b>Western Province</b><p>Highest customer density and 51.6% of mapped revenue.</p></div>
-                <div class="geo-insight"><b>Kandy</b><p>Strong growth with above-average booking value.</p></div>
-                <div class="geo-insight"><b>Galle / Matara</b><p>Weekend demand is growing faster than weekday demand.</p></div>
+                <div class="geo-card-head"><strong>Location Intelligence</strong><span>Methodology</span></div>
+                <div class="geo-insight"><b>Live map source</b><p>Salon address, latitude, longitude and Google Maps URL come directly from the operational database.</p></div>
+                <div class="geo-insight"><b>Protected business metrics</b><p>Bookings, customers and revenue load through the authenticated Intelligence API.</p></div>
+                <div class="geo-insight"><b>Regional analytics</b><p>Shown only when sufficient real geographic data exists—never from demo percentages.</p></div>
               </article>
             </div>
           </div>
