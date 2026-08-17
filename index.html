@@ -14,7 +14,7 @@
     <aside class="sidebar" id="sidebar">
       <div class="brand"><div class="brand-mark"><i></i><i></i><i></i><i></i></div><span>B4N CRM</span></div>
       <nav class="side-nav">
-        <a class="active" href="#"><span>◫</span>Dashboard</a>
+        <a class="active" href="#dashboard" data-view="dashboard"><span>◫</span>Dashboard</a>
         <a href="#"><span>♙</span>Customers</a>
         <a href="#"><span>▣</span>Bookings</a>
         <a href="#"><span>▤</span>Services</a>
@@ -23,6 +23,7 @@
         <a href="#"><span>◎</span>RFM & Segments</a>
         <a href="#"><span>◔</span>Behavior</a>
         <a href="#"><span>☼</span>Motivation</a>
+        <a href="#geo" data-view="geo"><span>⌖</span>Geo Analytics</a>
         <a href="#"><span>◫</span>Reports</a>
         <a href="#"><span>♧</span>Workforce</a>
         <a href="#"><span>⌘</span>Integrations</a>
@@ -48,6 +49,7 @@
       </header>
 
       <section class="content">
+        <div id="dashboardView" class="view-panel active-view">
         <div class="pill-nav">
           <button class="active">Dashboard</button><button>Calendar</button><button>Customers</button><button>Team</button><button>Reports</button><button>More⌄</button>
         </div>
@@ -87,6 +89,95 @@
             <article class="card staff-card"><div class="card-header"><div class="card-title">Top staff performance</div><span>This month⌄</span></div><div class="staff-row"><b class="rank one">1</b><div class="avatar avatar-b"></div><div><strong>Dilani Perera</strong><div class="progress"><span style="width:92%"></span></div></div><strong>LKR 1,540,000</strong></div><div class="staff-row"><b class="rank two">2</b><div class="avatar avatar-c"></div><div><strong>Naduni Silva</strong><div class="progress"><span style="width:74%"></span></div></div><strong>LKR 1,080,000</strong></div><div class="staff-row"><b class="rank three">3</b><div class="avatar avatar-d"></div><div><strong>Chamari Abeysekara</strong><div class="progress"><span style="width:63%"></span></div></div><strong>LKR 980,000</strong></div></article>
           </aside>
         </div>
+
+        <section id="geoView" class="view-panel geo-view" aria-label="Geo Analytics">
+          <div class="geo-shell">
+            <div class="geo-topline">
+              <div>
+                <span class="geo-eyebrow">B4N LOCATION INTELLIGENCE</span>
+                <h1>Geo Analytics · Sri Lanka</h1>
+                <p>Customer, booking and revenue intelligence by salon location and region.</p>
+              </div>
+              <div class="geo-controls">
+                <span class="live-dot">● Live</span>
+                <button type="button" id="resetSriLankaMap">Sri Lanka view</button>
+                <select id="geoPeriod" aria-label="Geo analytics period"><option>Last 7 days</option><option>Last 30 days</option><option>This quarter</option></select>
+              </div>
+            </div>
+
+            <div class="geo-kpi-grid">
+              <article><span>Total Customers</span><strong>24,589</strong><em>↑ 14.6%</em></article>
+              <article><span>Total Revenue</span><strong>LKR 12.54M</strong><em>↑ 18.3%</em></article>
+              <article><span>Total Bookings</span><strong>8,320</strong><em>↑ 12.8%</em></article>
+              <article><span>New Customers</span><strong>1,248</strong><em>↑ 16.2%</em></article>
+              <article><span>Active Salons</span><strong id="activeSalonCount">6</strong><em>Mapped</em></article>
+              <article><span>Avg. Booking Value</span><strong>LKR 7,017</strong><em>↑ 6.1%</em></article>
+            </div>
+
+            <div class="geo-main-grid">
+              <div class="geo-stack">
+                <article class="geo-card">
+                  <div class="geo-card-head"><strong>Customers by Region</strong><span>Current</span></div>
+                  <div class="geo-donut-wrap"><div class="geo-donut"><b>24,589</b><small>Total</small></div></div>
+                  <div class="geo-legend">
+                    <div><i></i><span>Western</span><b>45.2%</b></div><div><i></i><span>Southern</span><b>18.7%</b></div><div><i></i><span>Central</span><b>12.9%</b></div><div><i></i><span>Northern</span><b>8.3%</b></div><div><i></i><span>Eastern</span><b>7.1%</b></div>
+                  </div>
+                </article>
+                <article class="geo-card">
+                  <div class="geo-card-head"><strong>Revenue by Region</strong><span>LKR M</span></div>
+                  <div class="geo-bars">
+                    <div><i style="height:92%"></i><small>West</small></div><div><i style="height:78%"></i><small>South</small></div><div><i style="height:59%"></i><small>Central</small></div><div><i style="height:44%"></i><small>North</small></div><div><i style="height:33%"></i><small>East</small></div>
+                  </div>
+                </article>
+                <article class="geo-card geo-trend-card">
+                  <div class="geo-card-head"><strong>Booking Trend</strong><span>7 days</span></div>
+                  <svg viewBox="0 0 260 120" class="geo-line-chart" aria-label="Booking trend chart"><polyline points="0,72 40,53 75,61 110,31 145,48 180,27 220,38 260,18"/><polyline class="line-two" points="0,90 40,82 75,91 110,69 145,75 180,64 220,70 260,58"/></svg>
+                </article>
+              </div>
+
+              <article class="geo-map-card">
+                <div class="geo-map-head">
+                  <div><strong>Sri Lanka Salon Map</strong><small>Click a salon marker or list item to open its location</small></div>
+                  <span id="selectedSalonLabel">All mapped salons</span>
+                </div>
+                <div class="google-map-wrap" id="googleMapWrap">
+                  <iframe id="geoMapFrame" title="Google Map of Sri Lanka salon locations" src="https://www.google.com/maps?q=Sri%20Lanka&z=7&output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                  <div id="geoHotspots" class="geo-hotspots" aria-label="Salon map markers"></div>
+                  <div class="map-gradient-legend"><span>Lower activity</span><i></i><span>Higher activity</span></div>
+                </div>
+                <div class="geo-map-foot">
+                  <span>Google Maps · Salon address links</span>
+                  <a id="openSelectedMap" href="https://www.google.com/maps/search/?api=1&query=Sri%20Lanka" target="_blank" rel="noopener">Open selected location ↗</a>
+                </div>
+              </article>
+
+              <div class="geo-stack">
+                <article class="geo-card">
+                  <div class="geo-card-head"><strong>Revenue Contribution</strong><span>Region</span></div>
+                  <div class="geo-revenue-ring"><div><b>51.6%</b><small>Western</small></div></div>
+                  <div class="geo-legend compact"><div><i></i><span>Western</span><b>51.6%</b></div><div><i></i><span>Southern</span><b>19.3%</b></div><div><i></i><span>Central</span><b>12.4%</b></div><div><i></i><span>Northern</span><b>8.0%</b></div><div><i></i><span>Eastern</span><b>6.2%</b></div></div>
+                </article>
+                <article class="geo-card">
+                  <div class="geo-card-head"><strong>Top Performing Areas</strong><span>Growth</span></div>
+                  <div class="geo-ranking"><div><span>Colombo</span><b>LKR 1.25M</b><em>↑ 18.6%</em></div><div><span>Kandy</span><b>LKR 0.98M</b><em>↑ 15.2%</em></div><div><span>Negombo</span><b>LKR 0.77M</b><em>↑ 13.8%</em></div><div><span>Galle</span><b>LKR 0.64M</b><em>↑ 11.5%</em></div><div><span>Jaffna</span><b>LKR 0.51M</b><em>↑ 10.1%</em></div></div>
+                </article>
+              </div>
+            </div>
+
+            <div class="geo-bottom-grid">
+              <article class="geo-card geo-salons-card">
+                <div class="geo-card-head"><strong>Salon Locations</strong><span id="salonLocationSubtitle">Demo locations · replace with live salon records</span></div>
+                <div id="salonLocationList" class="salon-location-list"></div>
+              </article>
+              <article class="geo-card">
+                <div class="geo-card-head"><strong>Location Intelligence</strong><span>Opportunity</span></div>
+                <div class="geo-insight"><b>Western Province</b><p>Highest customer density and 51.6% of mapped revenue.</p></div>
+                <div class="geo-insight"><b>Kandy</b><p>Strong growth with above-average booking value.</p></div>
+                <div class="geo-insight"><b>Galle / Matara</b><p>Weekend demand is growing faster than weekday demand.</p></div>
+              </article>
+            </div>
+          </div>
+        </section>
       </section>
     </main>
   </div>
