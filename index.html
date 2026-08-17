@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>B4N CRM Dashboard</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Manrope:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar" id="sidebar">
+      <div class="brand"><div class="brand-mark"><i></i><i></i><i></i><i></i></div><span>B4N CRM</span></div>
+      <nav class="side-nav">
+        <a class="active" href="#"><span>◫</span>Dashboard</a>
+        <a href="#"><span>♙</span>Customers</a>
+        <a href="#"><span>▣</span>Bookings</a>
+        <a href="#"><span>▤</span>Services</a>
+        <a href="#"><span>🛒</span>Commerce</a>
+        <a href="#"><span>◖</span>Marketing</a>
+        <a href="#"><span>◎</span>RFM & Segments</a>
+        <a href="#"><span>◔</span>Behavior</a>
+        <a href="#"><span>☼</span>Motivation</a>
+        <a href="#"><span>◫</span>Reports</a>
+        <a href="#"><span>♧</span>Workforce</a>
+        <a href="#"><span>⌘</span>Integrations</a>
+        <a href="#"><span>⚙</span>Settings</a>
+      </nav>
+      <div class="sync-card">
+        <strong>Data Sync</strong>
+        <p class="ok">● All systems operational</p>
+        <small>Last sync: 2 min ago</small>
+        <button>View logs</button>
+      </div>
+    </aside>
+
+    <main class="main">
+      <header class="topbar">
+        <button class="menu-btn" id="menuBtn">☰</button>
+        <div class="search"><span>⌕</span><input id="globalSearch" placeholder="Search customers, bookings, staff..." /><kbd>⌘K</kbd></div>
+        <div class="top-actions">
+          <button class="icon-btn">♧<span class="badge">6</span></button>
+          <button class="icon-btn">▢</button>
+          <div class="profile-mini"><div class="avatar avatar-a"></div><div><strong>Dilani Salon</strong><small>Super Admin</small></div><span>⌄</span></div>
+        </div>
+      </header>
+
+      <section class="content">
+        <div class="pill-nav">
+          <button class="active">Dashboard</button><button>Calendar</button><button>Customers</button><button>Team</button><button>Reports</button><button>More⌄</button>
+        </div>
+
+        <div class="page-head">
+          <div><h1>Good morning, Dilani 👋</h1><p>Here’s what’s happening with your business today.</p></div>
+          <div class="page-actions"><button class="soft">＋ Add widget</button><button class="soft">▣ 18 – 24 May 2025⌄</button><button class="primary">⇩ Export report</button></div>
+        </div>
+
+        <div class="layout">
+          <section class="main-grid">
+            <article class="card kpi kpi-wide"><div class="card-title">Total Revenue</div><div class="metric-row"><h2>LKR 2,540,000</h2><span class="up">↑ 12.5%</span></div><small>vs last 7 days</small><svg viewBox="0 0 320 95" class="spark"><path d="M2 76 C30 65 43 49 68 57 S110 76 137 42 S177 19 195 48 S238 44 257 37 S289 30 318 10"/><path class="fill" d="M2 76 C30 65 43 49 68 57 S110 76 137 42 S177 19 195 48 S238 44 257 37 S289 30 318 10 L318 95 L2 95Z"/></svg><div class="axis"><span>Mon</span><span>Tue</span><span>Wed</span><span>Thu</span><span>Fri</span><span>Sat</span><span>Sun</span></div></article>
+            <article class="card kpi"><div class="card-title">Bookings</div><div class="metric-row"><h2>362</h2></div><span class="up">↑ 8.2%</span><small>vs last 7 days</small><svg viewBox="0 0 210 85" class="spark blue"><path d="M2 70 L28 60 L46 70 L63 74 L89 36 L114 60 L139 44 L165 58 L190 49 L208 51"/><path class="fill" d="M2 70 L28 60 L46 70 L63 74 L89 36 L114 60 L139 44 L165 58 L190 49 L208 51 L208 85 L2 85Z"/></svg></article>
+            <article class="card kpi"><div class="card-title">New Customers</div><div class="metric-row"><h2>48</h2></div><span class="up">↑ 15.3%</span><small>vs last 7 days</small><svg viewBox="0 0 210 85" class="spark purple"><path d="M2 75 L25 69 L48 55 L72 59 L96 42 L122 59 L148 48 L178 36 L208 21"/><path class="fill" d="M2 75 L25 69 L48 55 L72 59 L96 42 L122 59 L148 48 L178 36 L208 21 L208 85 L2 85Z"/></svg></article>
+            <article class="card kpi"><div class="card-title">Avg. Booking Value</div><div class="metric-row"><h2>LKR 7,017</h2></div><span class="up">↑ 6.1%</span><small>vs last 7 days</small><svg viewBox="0 0 210 85" class="spark orange"><path d="M2 64 L29 61 L54 63 L77 28 L104 60 L130 49 L158 60 L185 53 L208 55"/><path class="fill" d="M2 64 L29 61 L54 63 L77 28 L104 60 L130 49 L158 60 L185 53 L208 55 L208 85 L2 85Z"/></svg></article>
+
+            <article class="card customer-card">
+              <div class="portrait"><div class="avatar avatar-large"></div></div><span class="gold">★ Gold Member</span><h3>Isuri Fernando</h3><p>C10045</p><hr><div class="customer-info"><span>⌕ +94 77 123 4567</span><span>✉ isuri.fernando@gmail.com</span><span>⌾ Colombo 07</span><span>▣ Joined 12 Jan 2023</span></div><button class="primary full">View profile →</button>
+            </article>
+
+            <article class="card revenue-card"><div class="card-header"><div><div class="card-title">Revenue overview</div><div class="metric-row"><h2>LKR 12,540,000</h2><span class="up">↑ 14.6%</span></div></div><span>This month⌄</span></div><div class="bar-chart" id="barChart"></div></article>
+
+            <article class="card services-card"><div class="card-header"><div class="card-title">Top services</div><span>This month⌄</span></div><div id="servicesList"></div></article>
+
+            <article class="card rfm-card"><div class="card-header"><div class="card-title">RFM overview</div><span>All customers⌄</span></div><div class="rfm-wrap"><div class="donut"><div class="donut-hole"><strong>2,540</strong><small>Total customers</small></div></div><div class="legend"><p><i class="g1"></i>Champions <b>520</b></p><p><i class="g2"></i>Loyal <b>820</b></p><p><i class="g3"></i>Potential Loyalist <b>410</b></p><p><i class="g4"></i>At Risk <b>520</b></p><p><i class="g5"></i>Cannot Lose Them <b>270</b></p></div></div></article>
+
+            <article class="card funnel-card"><div class="card-header"><div class="card-title">Booking funnel</div><span>This month⌄</span></div><div class="funnel-row"><div>Service Viewed <b>2,840</b></div><span>100%</span></div><div class="funnel-row"><div>Availability Checked <b>1,520</b></div><span>53.5%</span></div><div class="funnel-row"><div>Booking Started <b>980</b></div><span>34.5%</span></div><div class="funnel-row"><div>Booking Completed <b>720</b></div><span>25.4%</span></div></article>
+
+            <article class="card conversion-card"><div class="card-header"><div class="card-title">Conversion rate</div><span></span></div><div class="gauge"><div class="gauge-value">25.4%</div></div><span class="up">↑ 4.2%</span><small>vs last month</small><svg viewBox="0 0 210 70" class="spark blue"><path d="M2 55 L24 40 L42 49 L62 44 L82 48 L103 31 L128 36 L148 29 L171 34 L191 18 L208 9"/></svg></article>
+          </section>
+
+          <aside class="right-panel">
+            <article class="card recent-card"><div class="card-header"><div class="card-title">Recent activities</div><a>View all</a></div><div class="activity"><span class="activity-icon purple-bg">▣</span><div><strong>New booking received</strong><small>Isuri Fernando · Hair Colour</small></div><time>2 min ago</time></div><div class="activity"><span class="activity-icon green-bg">◩</span><div><strong>Payment received</strong><small>LKR 8,500 · Isuri Fernando</small></div><time>15 min ago</time></div><div class="activity"><span class="activity-icon blue-bg">♧</span><div><strong>New customer registered</strong><small>Amanda Perera</small></div><time>30 min ago</time></div><div class="activity"><span class="activity-icon red-bg">×</span><div><strong>Booking cancelled</strong><small>Sachini Jayawardena</small></div><time>1 hour ago</time></div><div class="activity"><span class="activity-icon amber-bg">✉</span><div><strong>Campaign sent</strong><small>Weekend Offer · 1,245 customers</small></div><time>2 hours ago</time></div></article>
+
+            <article class="summary-card"><div class="summary-head"><strong>Today’s summary</strong><span>Edit goals</span></div><div class="goal"><div><span>Revenue goal</span><strong>LKR 25,000,000</strong></div><b>50%</b></div><div class="goalbar"><span></span></div><div class="summary-grid"><div><small>Revenue</small><strong>LKR 12,540,000</strong><span>↑ 14.6%</span></div><div><small>Bookings</small><strong>362</strong><span>↑ 8.2%</span></div><div><small>New customers</small><strong>48</strong><span>↑ 15.3%</span></div><div><small>Avg. rating</small><strong>4.8</strong><span>↑ 0.2</span></div></div></article>
+
+            <article class="card staff-card"><div class="card-header"><div class="card-title">Top staff performance</div><span>This month⌄</span></div><div class="staff-row"><b class="rank one">1</b><div class="avatar avatar-b"></div><div><strong>Dilani Perera</strong><div class="progress"><span style="width:92%"></span></div></div><strong>LKR 1,540,000</strong></div><div class="staff-row"><b class="rank two">2</b><div class="avatar avatar-c"></div><div><strong>Naduni Silva</strong><div class="progress"><span style="width:74%"></span></div></div><strong>LKR 1,080,000</strong></div><div class="staff-row"><b class="rank three">3</b><div class="avatar avatar-d"></div><div><strong>Chamari Abeysekara</strong><div class="progress"><span style="width:63%"></span></div></div><strong>LKR 980,000</strong></div></article>
+          </aside>
+        </div>
+      </section>
+    </main>
+  </div>
+<script src="script.js"></script>
+</body>
+</html>
