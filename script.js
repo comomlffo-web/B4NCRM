@@ -5,9 +5,7 @@ const SUPABASE_PUBLISHABLE_KEY='sb_publishable_6Z-PWJ-Jnq2GJx_o5atuYw_o58DKlNX';
 const AUTH_STORAGE_KEY='b4n_crm_staff_session';
 const STAFF_ROLES=['super_admin','admin','manager','specialist','worker'];
 
-const bars=[45,54,63,71,38,57,68,76,83,52,72,89,100,94,84,69,52,35,64,55,76,88,98,82,62,48,73,91,72,61];
 const barChart=document.getElementById('barChart');
-if(barChart) bars.forEach(v=>{const i=document.createElement('i');i.style.height=v+'%';barChart.appendChild(i)});
 
 document.getElementById('menuBtn')?.addEventListener('click',()=>document.getElementById('sidebar')?.classList.toggle('open'));
 document.addEventListener('keydown',e=>{
@@ -260,6 +258,39 @@ document.getElementById('resetSriLankaMap')?.addEventListener('click',()=>{
   if(openSelectedMap){openSelectedMap.href='https://www.google.com/maps/search/?api=1&query=Sri%20Lanka';openSelectedMap.textContent='Open Sri Lanka in Google Maps ↗'}
 });
 
+
+function setDashboardDateRange(){
+  const now=new Date();
+  const end=new Date(now);
+  const start=new Date(now);start.setDate(start.getDate()-6);
+  const fmt=d=>new Intl.DateTimeFormat('en-GB',{day:'numeric',month:'short',year:'numeric'}).format(d);
+  setText('dashboardDateRange',`${fmt(start)} – ${fmt(end)}`);
+}
+function renderRevenueBars(byDay=[]){
+  if(!barChart)return;
+  barChart.innerHTML='';
+  const rows=(byDay||[]).slice(-30);
+  if(!rows.length){
+    barChart.innerHTML='<div class="status-placeholder">No revenue trend rows available.</div>';
+    return;
+  }
+  const max=Math.max(...rows.map(x=>Number(x.value||0)),1);
+  rows.forEach(row=>{
+    const el=document.createElement('i');
+    const value=Number(row.value||0);
+    el.style.height=`${Math.max(2,(value/max)*100)}%`;
+    el.title=`${row.date}: ${formatLkr(value)}`;
+    if(value===0)el.dataset.zero='true';
+    barChart.appendChild(el)
+  })
+}
+function renderBookingSnapshot(status={}){
+  const host=document.getElementById('bookingStatusSnapshot');
+  if(!host)return;
+  const order=['pending','confirmed','completed','cancelled'];
+  host.innerHTML=order.map(key=>`<div class="status-row"><span>${key.charAt(0).toUpperCase()+key.slice(1)}</span><b>${Number(status?.[key]||0)}</b></div>`).join('')
+}
+
 // ===== Protected intelligence =====
 async function loadProtectedAnalytics(){
   const token=await getStoredAccessToken();
@@ -270,8 +301,10 @@ async function loadProtectedAnalytics(){
   try{
     const session=getStoredSession();
     updateAuthUI(session);
-    const [overview,rfm,staff]=await Promise.all([
+    const [overview,revenueData,customerData,rfm,staff]=await Promise.all([
       api('/api/v1/intelligence/overview',{token}),
+      api('/api/v1/intelligence/revenue',{token}),
+      api('/api/v1/intelligence/customers',{token}),
       api('/api/v1/intelligence/rfm',{token}),
       api('/api/v1/intelligence/staff',{token})
     ]);
@@ -286,6 +319,30 @@ async function loadProtectedAnalytics(){
     setText('geoRevenue',formatLkr(overview.revenue?.booked||0));
     setText('geoBookings',overview.bookings?.total??0);
     setText('geoAvgBooking',formatLkr(overview.revenue?.avg_booking_value||0));
+
+    // Live revenue overview.
+    setText('revenueOverviewTotal',formatLkr(revenueData.totals?.booked||0));
+    setProtectedState('revenueOverviewState','Live');
+    setText('revenueOverviewNote','Daily bars use live appointment revenue from the Intelligence API.');
+    renderRevenueBars(revenueData.by_day||[]);
+
+    // Live customer intelligence.
+    setText('customerIntelTotal',customerData.total??overview.customers?.total??0);
+    setText('customerIntelFirst',customerData.first_visit_flagged??0);
+    setText('customerIntelRisk',customerData.risk_flagged??0);
+    setText('customerIntelNoShow',customerData.with_no_shows??0);
+    setText('customerIntelState','Live');
+
+    // Live booking status snapshot.
+    renderBookingSnapshot(overview.bookings?.status||{});
+    setText('bookingSnapshotState','Live');
+
+    // Live summary.
+    setText('summaryRevenue',formatLkr(overview.revenue?.booked||0));
+    setText('summaryBookings',overview.bookings?.total??0);
+    setText('summaryCustomers',overview.customers?.total??0);
+    setText('summaryABV',formatLkr(overview.revenue?.avg_booking_value||0));
+    setText('summaryLiveState','Live');
 
     updateRfmCard(rfm);
     updateStaffCard(staff);
@@ -393,4 +450,5 @@ authForm?.addEventListener('submit',async e=>{
 document.querySelectorAll('.api-protected').forEach(el=>el.addEventListener('click',openAuth));
 
 // Startup
+setDashboardDateRange();
 Promise.allSettled([loadPublicMenu(),loadGeo(),loadProtectedAnalytics()]);

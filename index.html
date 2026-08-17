@@ -60,7 +60,7 @@
 
         <div class="page-head">
           <div><h1>Good morning, Dilani 👋</h1><p>Here’s what’s happening with your business today.</p></div>
-          <div class="page-actions"><button class="soft">＋ Add widget</button><button class="soft">▣ 18 – 24 May 2025⌄</button><button class="primary">⇩ Export report</button></div>
+          <div class="page-actions"><button class="soft">＋ Add widget</button><button class="soft">▣ <span id="dashboardDateRange">Loading date…</span>⌄</button><button class="primary">⇩ Export report</button></div>
         </div>
 
         <div class="layout">
@@ -70,25 +70,58 @@
             <article class="card kpi"><div class="card-title">Customers <span class="live-source">API</span></div><div class="metric-row"><h2 id="dashCustomers">—</h2></div><span class="api-protected" id="dashCustomersState">Protected</span><small id="dashCustomersNote">Admin sign-in required</small><svg viewBox="0 0 210 85" class="spark purple"><path d="M2 75 L25 69 L48 55 L72 59 L96 42 L122 59 L148 48 L178 36 L208 21"/><path class="fill" d="M2 75 L25 69 L48 55 L72 59 L96 42 L122 59 L148 48 L178 36 L208 21 L208 85 L2 85Z"/></svg></article>
             <article class="card kpi"><div class="card-title">Avg. Booking Value <span class="live-source">API</span></div><div class="metric-row"><h2 id="dashAvgBooking">—</h2></div><span class="api-protected" id="dashAvgBookingState">Protected</span><small id="dashAvgBookingNote">Admin sign-in required</small><svg viewBox="0 0 210 85" class="spark orange"><path d="M2 64 L29 61 L54 63 L77 28 L104 60 L130 49 L158 60 L185 53 L208 55"/><path class="fill" d="M2 64 L29 61 L54 63 L77 28 L104 60 L130 49 L158 60 L185 53 L208 55 L208 85 L2 85Z"/></svg></article>
 
-            <article class="card customer-card">
-              <div class="portrait"><div class="avatar avatar-large"></div></div><span class="gold">★ Gold Member</span><h3>Isuri Fernando</h3><p>C10045</p><hr><div class="customer-info"><span>⌕ +94 77 123 4567</span><span>✉ isuri.fernando@gmail.com</span><span>⌾ Colombo 07</span><span>▣ Joined 12 Jan 2023</span></div><button class="primary full">View profile →</button>
-            </article>
+            <article class="card customer-card intelligence-card">
+      <div class="card-header"><div class="card-title">Customer Intelligence <span class="live-source">API</span></div><span id="customerIntelState">Protected</span></div>
+      <div class="customer-intel-number"><strong id="customerIntelTotal">—</strong><small>Total customers</small></div>
+      <div class="customer-intel-grid">
+        <div><span>First-visit flagged</span><b id="customerIntelFirst">—</b></div>
+        <div><span>Risk flagged</span><b id="customerIntelRisk">—</b></div>
+        <div><span>With no-shows</span><b id="customerIntelNoShow">—</b></div>
+        <div><span>Live source</span><b>Lovable</b></div>
+      </div>
+      <p class="data-integrity-note">No fictional customer PII is displayed.</p>
+    </article>
 
-            <article class="card revenue-card"><div class="card-header"><div><div class="card-title">Revenue overview</div><div class="metric-row"><h2>LKR 12,540,000</h2><span class="up">↑ 14.6%</span></div></div><span>This month⌄</span></div><div class="bar-chart" id="barChart"></div></article>
+            <article class="card revenue-card"><div class="card-header"><div><div class="card-title">Revenue overview <span class="live-source">API</span></div><div class="metric-row"><h2 id="revenueOverviewTotal">—</h2><span class="api-protected" id="revenueOverviewState">Protected</span></div></div><span id="revenueOverviewPeriod">All available bookings</span></div><div class="bar-chart" id="barChart"></div><small class="chart-footnote" id="revenueOverviewNote">Sign in to load live revenue trend.</small></article>
 
             <article class="card services-card"><div class="card-header"><div class="card-title">Live Service Catalogue <span class="live-source">LIVE</span></div><span id="menuApiStatus">Loading…</span></div><div id="menuSummary" class="menu-summary"></div><div id="servicesList"></div></article>
 
             <article class="card rfm-card"><div class="card-header"><div class="card-title">RFM overview</div><span>All customers⌄</span></div><div class="rfm-wrap"><div class="donut"><div class="donut-hole"><strong>2,540</strong><small>Total customers</small></div></div><div class="legend"><p><i class="g1"></i>Champions <b>520</b></p><p><i class="g2"></i>Loyal <b>820</b></p><p><i class="g3"></i>Potential Loyalist <b>410</b></p><p><i class="g4"></i>At Risk <b>520</b></p><p><i class="g5"></i>Cannot Lose Them <b>270</b></p></div></div></article>
 
-            <article class="card funnel-card"><div class="card-header"><div class="card-title">Booking funnel</div><span>This month⌄</span></div><div class="funnel-row"><div>Service Viewed <b>2,840</b></div><span>100%</span></div><div class="funnel-row"><div>Availability Checked <b>1,520</b></div><span>53.5%</span></div><div class="funnel-row"><div>Booking Started <b>980</b></div><span>34.5%</span></div><div class="funnel-row"><div>Booking Completed <b>720</b></div><span>25.4%</span></div></article>
+            <article class="card funnel-card">
+      <div class="card-header"><div class="card-title">Booking funnel <span class="live-source neutral">EVENT DATA</span></div><span>Not collected yet</span></div>
+      <div class="insufficient-state">
+        <strong>Insufficient event data</strong>
+        <p>Service views, availability checks and booking-start events were not historically recorded, so a true funnel cannot be calculated yet.</p>
+      </div>
+    </article>
 
-            <article class="card conversion-card"><div class="card-header"><div class="card-title">Conversion rate</div><span></span></div><div class="gauge"><div class="gauge-value">25.4%</div></div><span class="up">↑ 4.2%</span><small>vs last month</small><svg viewBox="0 0 210 70" class="spark blue"><path d="M2 55 L24 40 L42 49 L62 44 L82 48 L103 31 L128 36 L148 29 L171 34 L191 18 L208 9"/></svg></article>
+            <article class="card conversion-card">
+      <div class="card-header"><div class="card-title">Conversion rate <span class="live-source neutral">EVENT DATA</span></div><span></span></div>
+      <div class="insufficient-state centered">
+        <strong>—</strong>
+        <p>True conversion requires service-view and booking-start denominators. The API will populate this after behavior events are enabled.</p>
+      </div>
+    </article>
           </section>
 
           <aside class="right-panel">
-            <article class="card recent-card"><div class="card-header"><div class="card-title">Recent activities</div><a>View all</a></div><div class="activity"><span class="activity-icon purple-bg">▣</span><div><strong>New booking received</strong><small>Isuri Fernando · Hair Colour</small></div><time>2 min ago</time></div><div class="activity"><span class="activity-icon green-bg">◩</span><div><strong>Payment received</strong><small>LKR 8,500 · Isuri Fernando</small></div><time>15 min ago</time></div><div class="activity"><span class="activity-icon blue-bg">♧</span><div><strong>New customer registered</strong><small>Amanda Perera</small></div><time>30 min ago</time></div><div class="activity"><span class="activity-icon red-bg">×</span><div><strong>Booking cancelled</strong><small>Sachini Jayawardena</small></div><time>1 hour ago</time></div><div class="activity"><span class="activity-icon amber-bg">✉</span><div><strong>Campaign sent</strong><small>Weekend Offer · 1,245 customers</small></div><time>2 hours ago</time></div></article>
+            <article class="card recent-card">
+      <div class="card-header"><div class="card-title">Booking status snapshot <span class="live-source">API</span></div><span id="bookingSnapshotState">Protected</span></div>
+      <div id="bookingStatusSnapshot" class="status-snapshot">
+        <div class="status-placeholder">Sign in to load live booking status.</div>
+      </div>
+    </article>
 
-            <article class="summary-card"><div class="summary-head"><strong>Today’s summary</strong><span>Edit goals</span></div><div class="goal"><div><span>Revenue goal</span><strong>LKR 25,000,000</strong></div><b>50%</b></div><div class="goalbar"><span></span></div><div class="summary-grid"><div><small>Revenue</small><strong>LKR 12,540,000</strong><span>↑ 14.6%</span></div><div><small>Bookings</small><strong>362</strong><span>↑ 8.2%</span></div><div><small>New customers</small><strong>48</strong><span>↑ 15.3%</span></div><div><small>Avg. rating</small><strong>4.8</strong><span>↑ 0.2</span></div></div></article>
+            <article class="summary-card">
+      <div class="summary-head"><strong>Live business summary</strong><span id="summaryLiveState">Protected</span></div>
+      <div class="summary-grid live-summary-grid">
+        <div><small>Booked revenue</small><strong id="summaryRevenue">—</strong><span>Live API</span></div>
+        <div><small>Bookings</small><strong id="summaryBookings">—</strong><span>Live API</span></div>
+        <div><small>Customers</small><strong id="summaryCustomers">—</strong><span>Live API</span></div>
+        <div><small>Avg. booking value</small><strong id="summaryABV">—</strong><span>Live API</span></div>
+      </div>
+    </article>
 
             <article class="card staff-card"><div class="card-header"><div class="card-title">Top staff performance</div><span>This month⌄</span></div><div class="staff-row"><b class="rank one">1</b><div class="avatar avatar-b"></div><div><strong>Dilani Perera</strong><div class="progress"><span style="width:92%"></span></div></div><strong>LKR 1,540,000</strong></div><div class="staff-row"><b class="rank two">2</b><div class="avatar avatar-c"></div><div><strong>Naduni Silva</strong><div class="progress"><span style="width:74%"></span></div></div><strong>LKR 1,080,000</strong></div><div class="staff-row"><b class="rank three">3</b><div class="avatar avatar-d"></div><div><strong>Chamari Abeysekara</strong><div class="progress"><span style="width:63%"></span></div></div><strong>LKR 980,000</strong></div></article>
           </aside>
