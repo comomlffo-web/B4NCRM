@@ -286,8 +286,14 @@
       <div class="auth-brand"><div class="brand-mark"><i></i><i></i><i></i><i></i></div><span>B4N CRM</span></div>
       <span class="auth-kicker">SECURE STAFF ACCESS</span>
       <h2 id="authTitle">Sign in to live intelligence</h2>
-      <p>Use the same staff email and password you use in the Book4Now Lovable application.</p>
-      <form id="authForm">
+      <p>Use your registered Book4Now staff account.</p>
+
+      <div class="auth-method-tabs" role="tablist" aria-label="Sign in method">
+        <button type="button" class="auth-method active" id="passwordTab">Password</button>
+        <button type="button" class="auth-method" id="magicTab">Magic link</button>
+      </div>
+
+      <form id="authForm" class="auth-method-panel">
         <label>Email
           <input id="authEmail" type="email" autocomplete="username" required placeholder="staff@example.com">
         </label>
@@ -296,11 +302,24 @@
         </label>
         <button type="submit" class="auth-submit" id="authSubmit">Sign in</button>
       </form>
+
+      <form id="magicLinkForm" class="auth-method-panel" hidden>
+        <label>Registered email
+          <input id="magicEmail" type="email" autocomplete="email" required placeholder="staff@example.com">
+        </label>
+        <button type="submit" class="auth-submit" id="magicSubmit">Send magic link</button>
+        <p class="magic-help">We will email a one-time sign-in link. Only an existing account can use this option.</p>
+      </form>
+
       <div class="auth-message" id="authMessage" role="status"></div>
-      <div class="auth-security-note">Protected analytics remain enforced by the existing Supabase RLS policies. B4NCRM does not store your password.</div>
+      <div class="auth-security-note">
+        New users are not created by Magic Link. After authentication, B4NCRM verifies the account has an approved staff role before loading protected analytics.
+      </div>
     </section>
   </div>
 
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.js"></script>
   <script src="script.js"></script>
 
   </body>

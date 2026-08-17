@@ -1,55 +1,37 @@
-# B4NCRM — Complete Analytics Coverage Build
+# B4NCRM — Magic Link Login
 
-This build makes every major analytics capability planned for B4N visibly discoverable in the CRM.
+Adds passwordless Magic Link login while keeping the existing password login.
 
-## Visible analytics domains
-1. Customer Intelligence
-2. Revenue Intelligence
-3. Smart RFM
-4. Behavior Analytics
-5. Motivation Intelligence
-6. Trend Analysis
-7. Conversion / Abandonment / Friction
-8. Peak Times / Device Usage
-9. Menu & Navigation Intelligence
-10. Geo Analytics
-11. Commerce Analytics
-12. Workforce Analytics
-13. Marketing & Engagement Analytics
-14. Data Quality & Governance
-15. Executive dashboard / business summary
+## Security behavior
 
-## Menu Intelligence explicitly includes
-- Navigation Analysis
-- Menu Structure Intelligence
-- Menu Transition Analysis
-- behavior.menu_sequence_patterns
-- Menu Transition & Combination Pattern Intelligence
-- Service + Service
-- Service + Add-on
-- Service + Product
-- Product + Product
-- Support / Confidence / Lift
-- Menu confusion
-- Bundle opportunities
+- Uses the existing Book4Now / Lovable Supabase Auth project.
+- `shouldCreateUser: false` — entering an unknown email does not create an account.
+- After a Magic Link is clicked, B4NCRM verifies `user_roles`.
+- Only these roles can enter the CRM:
+  - super_admin
+  - admin
+  - manager
+  - specialist
+  - worker
+- Customer-only accounts are rejected.
+- The password is never used or stored for Magic Link login.
+- Existing Supabase RLS still protects the Intelligence API.
 
-## Funnel/Friction explicitly includes
-- Conversion Rate
-- Abandonment Rate
-- Revenue at Risk
-- Date/time incompatibility
-- Preferred staff unavailable
-- Capacity/duration conflicts
-- Recovery actions
-- Menu confusion
+## One required Supabase/Lovable Auth configuration
 
-## Status semantics
-- Live: public real source
-- Protected Live: real source after staff sign-in
-- Partial: part of the analytic is available today
-- Event Data Required: requires browser/booking telemetry not historically captured
-- API / Pipeline Pending: schema/model is designed but external API is not exposed yet
+The CRM callback URL must be allowed in Auth redirect URLs:
 
-## Data integrity
-Demo Geo percentages/rankings have been removed.
-Regional analytics are shown only when enough real multi-location data exists.
+https://b4ncrm.comomlffo.workers.dev/
+
+If the redirect URL is not allow-listed, Supabase will not return Magic Link users to the CRM correctly.
+
+## Deploy
+
+Replace:
+- index.html
+- styles.css
+- script.js
+- README.md
+
+Commit and push with GitHub Desktop. After Cloudflare deploys, hard-refresh with:
+Cmd + Shift + R

@@ -5,6 +5,14 @@ const SUPABASE_PUBLISHABLE_KEY='sb_publishable_6Z-PWJ-Jnq2GJx_o5atuYw_o58DKlNX';
 const AUTH_STORAGE_KEY='b4n_crm_staff_session';
 const STAFF_ROLES=['super_admin','admin','manager','specialist','worker'];
 
+const supabaseAuthClient = window.supabase?.createClient
+  ? window.supabase.createClient(SUPABASE_URL,SUPABASE_PUBLISHABLE_KEY,{
+      auth:{persistSession:true,autoRefreshToken:true,detectSessionInUrl:true}
+    })
+  : null;
+const CRM_REDIRECT_URL='https://b4ncrm.comomlffo.workers.dev/';
+
+
 const barChart=document.getElementById('barChart');
 
 document.getElementById('menuBtn')?.addEventListener('click',()=>document.getElementById('sidebar')?.classList.toggle('open'));
@@ -459,6 +467,43 @@ async function signInStaff(email,password){
   }
   return saveSession(data,roles)
 }
+
+async function requestMagicLink(email){
+  if(!supabaseAuthClient)throw new Error('Authentication library failed to load');
+  const {error}=await supabaseAuthClient.auth.signInWithOtp({
+    email,
+    options:{
+      emailRedirectTo:CRM_REDIRECT_URL,
+      shouldCreateUser:false
+    }
+  });
+  if(error)throw error;
+  return true;
+}
+async function consumeMagicLinkSession(){
+  if(!supabaseAuthClient)return null;
+  const {data,error}=await supabaseAuthClient.auth.getSession();
+  if(error)throw error;
+  const session=data?.session;
+  if(!session?.access_token||!session?.user?.id)return null;
+
+  const roles=await getStaffRoles(session.access_token,session.user.id);
+  if(!roles.some(r=>STAFF_ROLES.includes(r))){
+    await supabaseAuthClient.auth.signOut().catch(()=>{});
+    clearSession();
+    throw new Error('This account does not have B4N staff access');
+  }
+
+  // Normalize Supabase session into the format already used by B4NCRM.
+  const normalized={
+    access_token:session.access_token,
+    refresh_token:session.refresh_token,
+    expires_in:Math.max(60,(session.expires_at||Math.floor(Date.now()/1000)+3600)-Math.floor(Date.now()/1000)),
+    user:session.user
+  };
+  return saveSession(normalized,roles);
+}
+
 async function signOutStaff(){
   const session=getStoredSession();
   if(session?.access_token){
@@ -750,8 +795,28 @@ const authClose=document.getElementById('authClose');
 const authForm=document.getElementById('authForm');
 const authMessage=document.getElementById('authMessage');
 const authSubmit=document.getElementById('authSubmit');
+
+const passwordTab=document.getElementById('passwordTab');
+const magicTab=document.getElementById('magicTab');
+const magicLinkForm=document.getElementById('magicLinkForm');
+const magicEmail=document.getElementById('magicEmail');
+const magicSubmit=document.getElementById('magicSubmit');
+
+
+function setAuthMethod(method){
+  const magic=method==='magic';
+  passwordTab?.classList.toggle('active',!magic);
+  magicTab?.classList.toggle('active',magic);
+  if(authForm)authForm.hidden=magic;
+  if(magicLinkForm)magicLinkForm.hidden=!magic;
+  if(authMessage){authMessage.textContent='';authMessage.className='auth-message'}
+  setTimeout(()=>magic?magicEmail?.focus():document.getElementById('authEmail')?.focus(),0);
+}
+passwordTab?.addEventListener('click',()=>setAuthMethod('password'));
+magicTab?.addEventListener('click',()=>setAuthMethod('magic'));
+
 function openAuth(){
-  if(authModal){authModal.hidden=false;document.body.classList.add('auth-open');document.getElementById('authEmail')?.focus()}
+  if(authModal){authModal.hidden=false;document.body.classList.add('auth-open');setAuthMethod('password')}
 }
 function closeAuth(){
   if(authModal){authModal.hidden=true;document.body.classList.remove('auth-open')}
@@ -800,11 +865,54 @@ authForm?.addEventListener('submit',async e=>{
   }
 });
 
+
+magicLinkForm?.addEventListener('submit',async e=>{
+  e.preventDefault();
+  const email=magicEmail?.value.trim();
+  if(!email)return;
+  if(authMessage){authMessage.textContent='Sending secure magic link…';authMessage.className='auth-message info'}
+  if(magicSubmit)magicSubmit.disabled=true;
+  try{
+    await requestMagicLink(email);
+    if(authMessage){
+      authMessage.innerHTML='Magic link sent. Check your email and click the link to return securely to B4N CRM.';
+      authMessage.className='auth-message success magic-success';
+    }
+  }catch(error){
+    // Keep response generic to reduce account enumeration.
+    if(authMessage){
+      authMessage.textContent=error?.message||'Unable to send magic link. Check the email and try again.';
+      authMessage.className='auth-message error';
+    }
+  }finally{
+    if(magicSubmit)magicSubmit.disabled=false
+  }
+});
+
 // Clicking protected status opens sign-in.
 document.querySelectorAll('.api-protected').forEach(el=>el.addEventListener('click',openAuth));
 
 // Startup
-setDashboardDateRange();
-renderAnalyticsCoverage();
-routeFromHash();
-Promise.allSettled([loadPublicMenu(),loadGeo(),loadProtectedAnalytics()]);
+async function bootstrapB4NCRM(){
+  setDashboardDateRange();
+  renderAnalyticsCoverage();
+  routeFromHash();
+
+  // Handles a session returned by a Supabase Magic Link.
+  try{
+    const magicSession=await consumeMagicLinkSession();
+    if(magicSession){
+      updateAuthUI(magicSession);
+      history.replaceState(null,'',location.pathname+location.hash);
+    }
+  }catch(error){
+    console.warn('Magic-link callback rejected',error);
+    clearSession();
+    updateAuthUI(null);
+    openAuth();
+    if(authMessage){authMessage.textContent=error?.message||'Magic-link sign in was not authorized.';authMessage.className='auth-message error'}
+  }
+
+  await Promise.allSettled([loadPublicMenu(),loadGeo(),loadProtectedAnalytics()]);
+}
+bootstrapB4NCRM();

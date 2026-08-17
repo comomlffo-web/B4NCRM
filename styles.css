@@ -260,3 +260,24 @@ body.auth-open{overflow:hidden}
 .side-nav{flex:0 0 auto}
 .sync-card{flex:0 0 auto;margin-top:18px}
 @media (min-height:900px){.sync-card{margin-top:auto}}
+
+
+/* ===== Password + Magic Link Authentication ===== */
+.auth-method-tabs{
+  display:grid;grid-template-columns:1fr 1fr;gap:6px;background:#f3f6f7;
+  padding:4px;border-radius:12px;margin:0 0 18px
+}
+.auth-method{
+  border:0;background:transparent;color:#65798b;border-radius:9px;padding:9px 10px;
+  font-size:10px;font-weight:800;cursor:pointer
+}
+.auth-method.active{
+  background:#fff;color:#159653;box-shadow:0 2px 8px rgba(15,23,42,.06)
+}
+.auth-method-panel[hidden]{display:none}
+.magic-help{font-size:9px;color:#8293a3;line-height:1.5;margin:0}
+.magic-success{
+  padding:10px 12px;border-radius:10px;background:#edf9f1;color:#148c4e;
+  border:1px solid #d4efde;font-size:10px;line-height:1.5
+}
+.auth-message.info{color:#356a82}
