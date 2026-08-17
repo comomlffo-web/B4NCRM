@@ -254,3 +254,9 @@ body.auth-open{overflow:hidden}
 .geo-empty-state p{font-size:8px;line-height:1.5;opacity:.72;margin:6px 0 0}
 @media(max-width:1200px){.analytics-coverage-grid,.detail-feature-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.coverage-summary{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media(max-width:720px){.analytics-coverage-grid,.detail-feature-grid,.coverage-summary{grid-template-columns:1fr}.intel-header,.detail-header{display:flex;flex-direction:column}.intel-legend{justify-content:flex-start}}
+
+/* Analytics navigation accessibility hotfix */
+.sidebar{overflow-y:auto;overscroll-behavior:contain}
+.side-nav{flex:0 0 auto}
+.sync-card{flex:0 0 auto;margin-top:18px}
+@media (min-height:900px){.sync-card{margin-top:auto}}

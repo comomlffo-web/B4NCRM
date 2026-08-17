@@ -281,7 +281,8 @@ const ANALYTICS_DOMAINS={
       ['Data quality checks','Duplicate events, missing tenant IDs, invalid revenue, stale consent'],
       ['Lineage','Source → event → metric → insight → action'],
       ['Security controls','RLS, least privilege, audit and secret controls']
-    ],
+    ]
+  },
   geo:{
     title:'Geo Analytics',eyebrow:'LOCATION INTELLIGENCE',status:'partial',
     description:'Salon/branch mapping, location-linked performance, catchment, demand and geographic opportunity intelligence.',
@@ -297,7 +298,6 @@ const ANALYTICS_DOMAINS={
       ['Google Maps links','Stored operational location links'],
       ['Privacy thresholds','Aggregate geographic reporting']
     ]
-  }
   }
 };
 
