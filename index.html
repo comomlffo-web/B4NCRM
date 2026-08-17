@@ -8,6 +8,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Manrope:wght@500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="salon-user-intelligence.css" />
 </head>
 <body>
   <div class="app-shell">
@@ -21,6 +22,7 @@
         <a href="#revenue" data-view="detail" data-domain="revenue"><span>▥</span>Revenue Intelligence</a>
         <a href="#commerce" data-view="detail" data-domain="commerce"><span>🛒</span>Commerce Analytics</a>
         <a href="#workforce" data-view="detail" data-domain="workforce"><span>♧</span>Workforce Analytics</a>
+        <a href="#salon-user-intelligence" id="salonUserIntelNav" class="salon-user-nav"><span>◉</span>Salon User Intelligence</a>
         <a href="#engagement" data-view="detail" data-domain="engagement"><span>◖</span>Marketing & Engagement</a>
         <div class="nav-section-label">CUSTOMER INTELLIGENCE</div>
         <a href="#rfm" data-view="detail" data-domain="rfm"><span>◎</span>RFM & Segments</a>
@@ -195,6 +197,67 @@
           </div>
         </section>
 
+        
+        <section id="salonUserIntelView" class="view-panel salon-user-intel-view" aria-label="Salon User Intelligence">
+          <div class="sui-shell">
+            <div class="sui-head">
+              <div>
+                <span class="sui-eyebrow">B4N DEVELOPER PRODUCT INTELLIGENCE</span>
+                <h1>Salon User Intelligence</h1>
+                <p>How owners, admins, managers and staff actually use Book4Now — completely separate from customer booking behavior.</p>
+              </div>
+              <span id="suiTrackingStatus" class="sui-status pending">Checking…</span>
+            </div>
+
+            <div class="sui-kpis">
+              <article><span>Tracked Events</span><strong id="suiEvents">—</strong></article>
+              <article><span>Sessions</span><strong id="suiSessions">—</strong></article>
+              <article><span>Active Users · 30d</span><strong id="suiUsers">—</strong></article>
+              <article><span>Errors · 30d</span><strong id="suiErrors">—</strong></article>
+              <article><span>Menu Changes · 30d</span><strong id="suiMenuChanges">—</strong></article>
+            </div>
+
+            <div class="sui-grid">
+              <article class="sui-card">
+                <div class="sui-card-head"><strong>Feature Adoption & Usage</strong><span>Role-aware</span></div>
+                <div id="suiFeatures" class="sui-list"><p>Waiting for telemetry.</p></div>
+              </article>
+              <article class="sui-card">
+                <div class="sui-card-head"><strong>Usage by Salon Role</strong><span>Identity verified</span></div>
+                <div id="suiRoles" class="sui-list"><p>Waiting for telemetry.</p></div>
+              </article>
+            </div>
+
+            <div class="sui-grid">
+              <article class="sui-card">
+                <div class="sui-card-head"><strong>Menu Structure Intelligence</strong><span>Operational baseline</span></div>
+                <div id="suiMenuStructure" class="sui-menu-baseline"><p>Loading real menu baseline…</p></div>
+              </article>
+              <article class="sui-card">
+                <div class="sui-card-head"><strong>Menu Fine-Tuning Opportunities</strong><span>Evidence based</span></div>
+                <div id="suiMenuInsights" class="sui-list"><p>Loading…</p></div>
+              </article>
+            </div>
+
+            <div class="sui-grid">
+              <article class="sui-card">
+                <div class="sui-card-head"><strong>Module Transition Analysis</strong><span>Admin workflow</span></div>
+                <div id="suiTransitions" class="sui-list"><p>Tracker data required.</p></div>
+              </article>
+              <article class="sui-card">
+                <div class="sui-card-head"><strong>Usage Sequence Patterns</strong><span>Efficient · Friction · Power User</span></div>
+                <div id="suiSequences" class="sui-list"><p>Tracker data required.</p></div>
+              </article>
+            </div>
+
+            <article class="sui-card sui-architecture">
+              <strong>Separate intelligence boundary</strong>
+              <div><b>Salon Admin UI</b><i>→</i><b>Verified JWT</b><i>→</i><b>Salon User Worker</b><i>→</i><b>salon_user_intelligence</b><i>→</i><b>Developer Insights</b></div>
+              <small>Customer behavior remains in behavior.* and is never mixed with salon-user product analytics.</small>
+            </article>
+          </div>
+        </section>
+
         <section id="geoView" class="view-panel geo-view" aria-label="Geo Analytics">
           <div class="geo-shell">
             <div class="geo-topline">
@@ -322,5 +385,6 @@
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.js"></script>
   <script src="script.js"></script>
 
-  </body>
+    <script src="salon-user-intelligence.js"></script>
+</body>
 </html>

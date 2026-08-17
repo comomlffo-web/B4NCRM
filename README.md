@@ -1,37 +1,27 @@
-# B4NCRM — Magic Link Login
+# B4NCRM Salon User Intelligence — Drop-in Extension
 
-Adds passwordless Magic Link login while keeping the existing password login.
+This package avoids replacing the already-working CRM JavaScript/CSS.
 
-## Security behavior
+## Files
 
-- Uses the existing Book4Now / Lovable Supabase Auth project.
-- `shouldCreateUser: false` — entering an unknown email does not create an account.
-- After a Magic Link is clicked, B4NCRM verifies `user_roles`.
-- Only these roles can enter the CRM:
-  - super_admin
-  - admin
-  - manager
-  - specialist
-  - worker
-- Customer-only accounts are rejected.
-- The password is never used or stored for Magic Link login.
-- Existing Supabase RLS still protects the Intelligence API.
+- `index.html` — patched Analytics Hub/CRM HTML
+- `salon-user-intelligence.css`
+- `salon-user-intelligence.js`
 
-## One required Supabase/Lovable Auth configuration
+Keep your existing:
+- `styles.css`
+- `script.js`
 
-The CRM callback URL must be allowed in Auth redirect URLs:
+Copy the three files above into the B4NCRM repository root.
 
-https://b4ncrm.comomlffo.workers.dev/
+The page adds **Salon User Intelligence** to the sidebar and shows:
+- telemetry status
+- events/sessions/active users/errors
+- feature usage
+- role usage
+- real menu structure baseline
+- evidence-based menu optimization opportunities
+- module transitions
+- usage sequence patterns
 
-If the redirect URL is not allow-listed, Supabase will not return Magic Link users to the CRM correctly.
-
-## Deploy
-
-Replace:
-- index.html
-- styles.css
-- script.js
-- README.md
-
-Commit and push with GitHub Desktop. After Cloudflare deploys, hard-refresh with:
-Cmd + Shift + R
+Before the tracker is installed in the salon admin app, telemetry areas correctly say `Tracker not connected`, while the operational menu baseline is already visible.
