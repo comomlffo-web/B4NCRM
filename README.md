@@ -1,33 +1,25 @@
-# B4N CRM — Live API + Secure Staff Login
+# B4NCRM Authentication Hotfix 2
 
-This build connects directly to the existing B4N Intelligence API and mirrors the Lovable app's existing Supabase email/password staff sign-in.
+This fixes the Sign in button not opening the credentials form.
 
-## What changed
+## Root cause
+The login modal HTML was below `<script src="script.js"></script>`.
+The browser executed the script before `#authModal` existed, so the click handler
+had no modal element to open.
 
-- Public Geo + Services/Menu load automatically.
-- Revenue, Bookings, Customers, RFM and Staff remain protected.
-- A **Sign in** button now appears in the top-right.
-- Use the **same staff email/password** used by the Book4Now Lovable app.
-- After authentication, B4NCRM checks `user_roles` and only accepts:
-  - super_admin
-  - admin
-  - manager
-  - specialist
-  - worker
-- The Supabase access token is stored only in this browser's localStorage.
-- Passwords are sent directly to Supabase Auth and are never stored by B4NCRM.
+## Fix
+The complete `#authModal` dialog is now parsed before `script.js`.
 
-## Deployment
-
-Replace these files in the `B4NCRM` repository:
-
+## Deploy
+Replace these four files in the B4NCRM repository:
 - index.html
-- styles.css
 - script.js
+- styles.css
 - README.md
 
-Commit and push with GitHub Desktop. Cloudflare should redeploy automatically.
+Commit and push using GitHub Desktop.
 
-## Important
+After Cloudflare deploys, hard refresh:
+**Cmd + Shift + R**
 
-The public Geo/Menu endpoints do not require login. Operational analytics use the logged-in user's JWT, so the existing Lovable/Supabase RLS policies remain authoritative.
+Then click **Sign in**.

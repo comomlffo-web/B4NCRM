@@ -1,3 +1,4 @@
+console.info('B4N CRM auth hotfix 2 loaded');
 const API_BASE='https://b4n-intelligence-api.comomlffo.workers.dev';
 const SUPABASE_URL='https://wazhhgcjrstfrxbwtcvj.supabase.co';
 const SUPABASE_PUBLISHABLE_KEY='sb_publishable_6Z-PWJ-Jnq2GJx_o5atuYw_o58DKlNX';
