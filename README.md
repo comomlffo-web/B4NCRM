@@ -1,30 +1,29 @@
-# B4NCRM — Live Data Clean Build
+# B4NCRM Geo Analytics View Fix
 
-This build removes the remaining prototype/demo business data from the dashboard.
+## Problem
+`#geoView` was nested inside `#dashboardView`.
 
-## Live after staff sign-in
-- Total booked revenue
-- Total bookings
-- Total customers
-- Average booking value
-- Revenue overview and daily revenue bars
-- Customer intelligence counts
-- Booking status snapshot
-- Live business summary
-- RFM
-- Staff performance
-- Live service catalogue/menu relationships
-- Geo salon address/map data
+The JavaScript correctly did:
+- hide Dashboard
+- show Geo
 
-## Explicitly not fabricated
-The booking funnel and conversion rate are now shown as **Insufficient event data** because the Lovable operational database did not historically record service-view, availability-check and abandoned booking-session events.
+But because Geo was a child of Dashboard, hiding Dashboard also hid Geo, resulting in a blank white page.
+
+## Fix
+`#dashboardView` is now closed before `#geoView`, so Dashboard and Geo Analytics are sibling views.
+
+No API, authentication, database, or CSS changes are required for this fix.
 
 ## Deploy
-Replace these four files in the B4NCRM GitHub repository:
+Replace these files in the B4NCRM GitHub repository:
 - index.html
 - script.js
 - styles.css
 - README.md
 
-Commit + push in GitHub Desktop, then hard refresh after Cloudflare deploys:
+Commit and push with GitHub Desktop.
+
+After Cloudflare redeploys, hard refresh:
 Cmd + Shift + R
+
+Then click **Geo Analytics**.
