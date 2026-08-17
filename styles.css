@@ -85,3 +85,33 @@
 @media(max-width:1400px){.geo-main-grid{grid-template-columns:210px minmax(390px,1fr) 230px}.geo-kpi-grid{grid-template-columns:repeat(3,1fr)}.salon-location-list{grid-template-columns:repeat(2,1fr)}}
 @media(max-width:1100px){.geo-main-grid{grid-template-columns:1fr}.geo-stack{grid-template-columns:repeat(3,1fr)}.geo-map-card{min-height:620px}.geo-bottom-grid{grid-template-columns:1fr}.geo-kpi-grid{grid-template-columns:repeat(2,1fr)}}
 @media(max-width:720px){.geo-shell{padding:13px;border-radius:18px}.geo-topline{flex-direction:column}.geo-controls{width:100%;flex-wrap:wrap}.geo-kpi-grid{grid-template-columns:1fr 1fr}.geo-stack{grid-template-columns:1fr}.geo-map-card{min-height:520px}.google-map-wrap{min-height:430px}.salon-location-list{grid-template-columns:1fr}.geo-bottom-grid{display:block}.geo-bottom-grid>.geo-card{margin-bottom:12px}.geo-kpi-grid article{min-height:86px}.geo-kpi-grid strong{font-size:17px}}
+
+
+/* ===== Live B4N Intelligence API states ===== */
+.live-source{
+  display:inline-flex;align-items:center;margin-left:6px;padding:2px 6px;border-radius:999px;
+  background:#e9f9ef;color:#159653;font-size:8px;font-weight:700;letter-spacing:.05em;vertical-align:middle
+}
+.api-protected{
+  display:inline-flex;align-items:center;padding:4px 7px;border-radius:999px;
+  background:#f1f5f9;color:#64748b;font-size:9px;font-weight:700
+}
+.api-protected.live{background:#eaf8ef;color:#159653}
+.api-error{color:#dc2626!important}
+.menu-summary{
+  display:flex;flex-wrap:wrap;gap:6px;margin:12px 0 4px
+}
+.menu-summary span{
+  padding:5px 8px;border-radius:999px;background:#f2f7f5;color:#36556a;font-size:9px;
+  border:1px solid #e7efeb
+}
+.service-row .service-meta{
+  display:block;color:#8292a3;font-size:8px;margin-top:3px
+}
+.protected-copy{color:#91a1b1!important;font-style:normal!important}
+.geo-card.api-muted{opacity:.68}
+.geo-api-note{
+  border:1px dashed rgba(55,197,113,.35);background:rgba(20,97,124,.16);color:#c9e7f0;
+  border-radius:12px;padding:10px 12px;font-size:10px;margin-top:10px
+}
+.salon-location .live-address{white-space:pre-line}

@@ -1,12 +1,29 @@
-# B4N CRM Dashboard
+# B4N CRM — Live Intelligence API build
 
-Responsive standalone HTML/CSS/JS dashboard inspired by the supplied reference.
+This build connects the CRM frontend to:
 
-## Run
-Open `index.html` directly in a browser, or serve the folder:
+`https://b4n-intelligence-api.comomlffo.workers.dev`
 
-```bash
-python3 -m http.server 8080
-```
+## Live immediately
+- Salon name/address/latitude/longitude/Google Maps link
+- Live salon count
+- Live services
+- Menu relationship counts: services, add-ons, suggestions, product links
 
-Then visit `http://localhost:8080`.
+## Protected analytics
+Revenue, bookings, customers, RFM and staff endpoints remain protected by the existing Lovable/Supabase RLS.
+
+The UI no longer presents demo protected numbers as live data. It displays `Protected` until an authenticated Supabase access token is available.
+
+Supported token storage for the next auth step:
+- `b4n_supabase_access_token`
+- `sb-wazhhgcjrstfrxbwtcvj-auth-token`
+
+## Deploy
+Replace the files in the `B4NCRM` GitHub repository with:
+- index.html
+- styles.css
+- script.js
+- README.md
+
+Commit in GitHub Desktop and push. Cloudflare's connected deployment should rebuild automatically.
