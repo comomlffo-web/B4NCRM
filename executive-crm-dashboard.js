@@ -279,3 +279,152 @@
 
   window.B4NExecutiveCRM = { reload: load };
 })();
+
+/* ===== B4N CRM top pill navigation ===== */
+(() => {
+  'use strict';
+
+  const BOOK4NOW_ADMIN_URL = 'https://book4now.lovable.app/admin';
+
+  function clickSidebar(selector) {
+    const target = document.querySelector(selector);
+    if (!target) return false;
+    target.click();
+    return true;
+  }
+
+  function setActive(buttons, activeButton) {
+    buttons.forEach(btn => btn.classList.toggle('active', btn === activeButton));
+  }
+
+  function closeMoreMenu() {
+    document.getElementById('b4nTopMoreMenu')?.remove();
+  }
+
+  function openMoreMenu(button) {
+    closeMoreMenu();
+
+    const menu = document.createElement('div');
+    menu.id = 'b4nTopMoreMenu';
+    menu.setAttribute('role', 'menu');
+
+    Object.assign(menu.style, {
+      position: 'fixed',
+      zIndex: '9999',
+      minWidth: '220px',
+      padding: '8px',
+      background: '#fff',
+      border: '1px solid #e5e7eb',
+      borderRadius: '14px',
+      boxShadow: '0 16px 40px rgba(15,23,42,.14)'
+    });
+
+    const items = [
+      ['Revenue Intelligence', '[data-view="detail"][data-domain="revenue"]'],
+      ['RFM & Segments', '[data-view="detail"][data-domain="rfm"]'],
+      ['Behavior Analytics', '[data-view="detail"][data-domain="behavior"]'],
+      ['Geo Analytics', '[data-view="geo"]'],
+      ['Salon User Intelligence', '#salonUserIntelNav']
+    ];
+
+    items.forEach(([label, selector]) => {
+      const item = document.createElement('button');
+      item.type = 'button';
+      item.textContent = label;
+      item.setAttribute('role', 'menuitem');
+
+      Object.assign(item.style, {
+        display: 'block',
+        width: '100%',
+        padding: '10px 12px',
+        border: '0',
+        borderRadius: '9px',
+        background: 'transparent',
+        color: '#0f172a',
+        textAlign: 'left',
+        cursor: 'pointer',
+        font: 'inherit'
+      });
+
+      item.addEventListener('mouseenter', () => item.style.background = '#f1f5f9');
+      item.addEventListener('mouseleave', () => item.style.background = 'transparent');
+      item.addEventListener('click', () => {
+        closeMoreMenu();
+        clickSidebar(selector);
+      });
+
+      menu.appendChild(item);
+    });
+
+    document.body.appendChild(menu);
+
+    const rect = button.getBoundingClientRect();
+    const menuWidth = 220;
+    const left = Math.min(rect.left, window.innerWidth - menuWidth - 12);
+    menu.style.left = `${Math.max(12, left)}px`;
+    menu.style.top = `${rect.bottom + 8}px`;
+  }
+
+  function bindTopPills() {
+    const nav = document.querySelector('.pill-nav');
+    if (!nav || nav.dataset.b4nBound === 'true') return;
+
+    const buttons = [...nav.querySelectorAll('button')];
+    if (buttons.length < 6) return;
+
+    nav.dataset.b4nBound = 'true';
+
+    const [dashboard, calendar, customers, team, reports, more] = buttons;
+
+    dashboard.addEventListener('click', () => {
+      closeMoreMenu();
+      clickSidebar('[data-view="dashboard"]');
+      setActive(buttons, dashboard);
+    });
+
+    calendar.addEventListener('click', () => {
+      closeMoreMenu();
+      window.open(BOOK4NOW_ADMIN_URL, '_blank', 'noopener,noreferrer');
+    });
+
+    customers.addEventListener('click', () => {
+      closeMoreMenu();
+      clickSidebar('[data-view="detail"][data-domain="customers"]');
+      setActive(buttons, customers);
+    });
+
+    team.addEventListener('click', () => {
+      closeMoreMenu();
+      clickSidebar('[data-view="detail"][data-domain="workforce"]');
+      setActive(buttons, team);
+    });
+
+    reports.addEventListener('click', () => {
+      closeMoreMenu();
+      clickSidebar('[data-view="analytics"]');
+      setActive(buttons, reports);
+    });
+
+    more.addEventListener('click', (event) => {
+      event.stopPropagation();
+      const isOpen = !!document.getElementById('b4nTopMoreMenu');
+      if (isOpen) closeMoreMenu();
+      else openMoreMenu(more);
+    });
+
+    document.addEventListener('click', (event) => {
+      const menu = document.getElementById('b4nTopMoreMenu');
+      if (menu && !menu.contains(event.target) && event.target !== more) closeMoreMenu();
+    });
+
+    window.addEventListener('resize', closeMoreMenu);
+    window.addEventListener('scroll', closeMoreMenu, { passive: true });
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', bindTopPills, { once: true });
+  } else {
+    bindTopPills();
+  }
+})();
+
