@@ -1,27 +1,43 @@
-# B4NCRM Salon User Intelligence — Drop-in Extension
+# B4NCRM Executive CRM Dashboard v1
 
-This package avoids replacing the already-working CRM JavaScript/CSS.
+Drop-in upgrade for the existing `comomlffo-web/B4NCRM` static Cloudflare dashboard.
 
-## Files
+## What it adds
 
-- `index.html` — patched Analytics Hub/CRM HTML
-- `salon-user-intelligence.css`
-- `salon-user-intelligence.js`
+- Executive Business Command Centre above the existing dashboard
+- Live booked revenue, bookings, customers and ABV from the existing protected Intelligence API
+- RFM evidence state (does not invent segments when evidence is limited)
+- Salon-user telemetry status from the existing Salon User Intelligence API
+- Customer/risk/no-show signals
+- Booking operational attention panel
+- Team + menu configuration signals
+- Evidence-based priority action queue
+- Explicit data readiness: operational facts vs telemetry vs derived models
 
-Keep your existing:
-- `styles.css`
-- `script.js`
+## Safe architecture
 
-Copy the three files above into the B4NCRM repository root.
+- Does **not** expose CRM Supabase credentials in the browser.
+- Reuses the existing staff session token (`b4n_crm_staff_session`).
+- Reuses existing B4N Intelligence APIs.
+- Does not change the booking application or operational database.
+- Does not fabricate empty CRM metrics.
 
-The page adds **Salon User Intelligence** to the sidebar and shows:
-- telemetry status
-- events/sessions/active users/errors
-- feature usage
-- role usage
-- real menu structure baseline
-- evidence-based menu optimization opportunities
-- module transitions
-- usage sequence patterns
+## Install
 
-Before the tracker is installed in the salon admin app, telemetry areas correctly say `Tracker not connected`, while the operational menu baseline is already visible.
+Copy these files to the B4NCRM repository root:
+
+- `executive-crm-dashboard.js`
+- `executive-crm-dashboard.css`
+- `install-executive-v1.py`
+
+Then run:
+
+```bash
+python3 install-executive-v1.py
+```
+
+The script only adds the CSS/JS include tags to `index.html` and is idempotent.
+
+## Current repository access limitation
+
+The connected GitHub account has read access to `comomlffo-web/B4NCRM` but no push permission, so this package was not pushed automatically.
