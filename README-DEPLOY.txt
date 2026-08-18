@@ -1,52 +1,20 @@
-# B4NCRM Super Admin Lock
+B4NCRM CUSTOMER INTELLIGENCE LIVE
 
-Authorized identity:
-- Email: comomlffo@gmail.com
-- Required role: super_admin
+CRM DB: already complete and verified.
+Current Salon 1: 39 customers; LKR 257,680 booked; 6 completed visits; LKR 9,100 completed revenue; 2 RFM scored; 0 risk scored; 0 NBA ready.
 
-## Files
-1. `index.html`
-   - Loads the Super Admin guard before `script.js`.
-   - Changes visible Protected Live wording to Super Admin · Live.
-   - Removes the hard-coded Dilani greeting.
+B4NCRM repo (comomlffo-web/B4NCRM):
+- replace index.html
+- add customer-intelligence-live.js
+- add customer-intelligence-live.css
 
-2. `b4n-super-admin-guard.js`
-   - Frontend defense-in-depth.
-   - Rejects persisted CRM sessions unless both email + super_admin role match.
-   - Blocks protected CRM API calls from unauthorized browser sessions.
+Main Worker b4n-intelligence-api:
+- replace code with b4n-intelligence-api-customer-workspace.js
+- add CRM_SUPABASE_URL = https://bpbdtbgztwhiqswnbijy.supabase.co
+- add CRM_SERVICE_ROLE_KEY as Secret (CRM project service-role key)
+- add CRM_SALON_ID = 1
+- keep SUPABASE_URL, SUPABASE_PUBLISHABLE_KEY, ALLOWED_ORIGINS
 
-3. `b4n-intelligence-api-super-admin.js`
-   - Full replacement source for the current main Intelligence Worker.
-   - Before every `/api/v1/intelligence/*` request it:
-     a. validates the Supabase session via `/auth/v1/user`;
-     b. requires email `comomlffo@gmail.com`;
-     c. reads `user_roles` using the same JWT;
-     d. requires the `super_admin` database role;
-     e. fails closed with 401/403.
+Security: exact comomlffo@gmail.com + database super_admin role required. CRM RPC is service_role only. No names/phones/emails returned.
 
-## Deploy
-### B4NCRM GitHub / Cloudflare Pages
-Upload/replace:
-- `index.html`
-- add `b4n-super-admin-guard.js`
-
-Keep the existing:
-- `script.js`
-- `styles.css`
-- `salon-user-intelligence.js/.css`
-- `executive-crm-dashboard.js/.css`
-
-### Main Intelligence API Worker
-In Cloudflare Workers:
-- Open `b4n-intelligence-api`
-- Edit code
-- Replace Worker source with `b4n-intelligence-api-super-admin.js`
-- Deploy
-
-No new secret is required for this patch. It uses the existing:
-- SUPABASE_URL
-- SUPABASE_PUBLISHABLE_KEY
-- ALLOWED_ORIGINS
-
-## Important
-The separate `b4n-salon-user-intelligence-api` must also receive the same exact-email + super_admin check server-side for complete end-to-end enforcement. The frontend guard already blocks its CRM calls, but browser-side checks alone are not a security boundary.
+After deploy: hard refresh, sign in, Analytics Hub > Customer Intelligence.

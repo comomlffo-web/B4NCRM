@@ -10,6 +10,7 @@
   <link rel="stylesheet" href="styles.css" />
   <link rel="stylesheet" href="salon-user-intelligence.css" />
   <link rel="stylesheet" href="executive-crm-dashboard.css" />
+  <link rel="stylesheet" href="customer-intelligence-live.css" />
 </head>
 <body>
   <div class="app-shell">
@@ -70,7 +71,7 @@
         </div>
 
         <div class="page-head">
-          <div><h1>Good morning 👋</h1><p>Here’s what’s happening with your business today.</p></div>
+          <div><h1>Good morning, Dilani 👋</h1><p>Here’s what’s happening with your business today.</p></div>
           <div class="page-actions"><button class="soft">＋ Add widget</button><button class="soft">▣ <span id="dashboardDateRange">Loading date…</span>⌄</button><button class="primary">⇩ Export report</button></div>
         </div>
 
@@ -149,7 +150,7 @@
               </div>
               <div class="intel-legend">
                 <span class="status-chip live">Live</span>
-                <span class="status-chip protected">Super Admin · Live</span>
+                <span class="status-chip protected">Protected Live</span>
                 <span class="status-chip partial">Partial</span>
                 <span class="status-chip event">Event Data Required</span>
                 <span class="status-chip pending">API / Pipeline Pending</span>
@@ -212,20 +213,20 @@
     <section class="auth-modal" role="dialog" aria-modal="true" aria-labelledby="authTitle">
       <button type="button" class="auth-close" id="authClose" aria-label="Close">×</button>
       <div class="auth-brand"><div class="brand-mark"><i></i><i></i><i></i><i></i></div><span>B4N CRM</span></div>
-      <span class="auth-kicker">SUPER ADMIN ACCESS</span>
+      <span class="auth-kicker">SECURE STAFF ACCESS</span>
       <h2 id="authTitle">Sign in to live intelligence</h2>
-      <p>Authorized Super Admin account only.</p>
+      <p>Use your registered Book4Now staff account.</p>
       <div class="auth-method-tabs" role="tablist" aria-label="Sign in method"><button type="button" class="auth-method active" id="passwordTab">Password</button><button type="button" class="auth-method" id="magicTab">Magic link</button></div>
       <form id="authForm" class="auth-method-panel"><label>Email<input id="authEmail" type="email" autocomplete="username" required placeholder="staff@example.com"></label><label>Password<input id="authPassword" type="password" autocomplete="current-password" required minlength="6" placeholder="••••••••"></label><button type="submit" class="auth-submit" id="authSubmit">Sign in</button></form>
       <form id="magicLinkForm" class="auth-method-panel" hidden><label>Registered email<input id="magicEmail" type="email" autocomplete="email" required placeholder="staff@example.com"></label><button type="submit" class="auth-submit" id="magicSubmit">Send magic link</button><p class="magic-help">We will email a one-time sign-in link. Only an existing account can use this option.</p></form>
       <div class="auth-message" id="authMessage" role="status"></div>
-      <div class="auth-security-note">New users are not created by Magic Link. After authentication, B4NCRM requires the authorized email and the super_admin role before loading protected analytics.</div>
+      <div class="auth-security-note">New users are not created by Magic Link. After authentication, B4NCRM verifies the account has an approved staff role before loading protected analytics.</div>
     </section>
   </div>
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.js"></script>
-  <script src="b4n-super-admin-guard.js"></script>
   <script src="script.js"></script>
   <script src="salon-user-intelligence.js"></script>
   <script src="executive-crm-dashboard.js"></script>
+  <script src="customer-intelligence-live.js"></script>
 </body>
 </html>
