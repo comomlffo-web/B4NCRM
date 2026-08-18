@@ -9,6 +9,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Manrope:wght@500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css" />
   <link rel="stylesheet" href="salon-user-intelligence.css" />
+  <link rel="stylesheet" href="executive-crm-dashboard.css" />
 </head>
 <body>
   <div class="app-shell">
@@ -138,7 +139,6 @@
         </div>
         </div><!-- /dashboardView -->
 
-
         <section id="analyticsView" class="view-panel analytics-hub-view" aria-label="B4N Analytics Hub">
           <div class="intel-shell">
             <div class="intel-header">
@@ -155,24 +155,16 @@
                 <span class="status-chip pending">API / Pipeline Pending</span>
               </div>
             </div>
-
             <div class="coverage-summary">
               <article><span>Planned Domains</span><strong id="coverageDomainCount">15</strong></article>
               <article><span>Visible in CRM</span><strong id="coverageVisibleCount">15</strong></article>
               <article><span>Live / Partial</span><strong id="coverageLiveCount">—</strong></article>
               <article><span>Requires Telemetry</span><strong id="coverageTelemetryCount">—</strong></article>
             </div>
-
             <div id="analyticsCoverageGrid" class="analytics-coverage-grid"></div>
-
             <article class="intel-card architecture-card">
-              <div class="intel-card-head">
-                <div><strong>Intelligence Flow</strong><span>Target architecture</span></div>
-                <span class="status-chip live">Governed</span>
-              </div>
-              <div class="architecture-flow">
-                <b>Lovable Operational DB</b><i>→</i><b>Intelligence API</b><i>→</i><b>Customer / Business Analytics</b><i>→</i><b>Trend + NBA</b><i>→</i><b>CRM Actions</b>
-              </div>
+              <div class="intel-card-head"><div><strong>Intelligence Flow</strong><span>Target architecture</span></div><span class="status-chip live">Governed</span></div>
+              <div class="architecture-flow"><b>Lovable Operational DB</b><i>→</i><b>Intelligence API</b><i>→</i><b>Customer / Business Analytics</b><i>→</i><b>Trend + NBA</b><i>→</i><b>CRM Actions</b></div>
             </article>
           </div>
         </section>
@@ -181,163 +173,36 @@
           <div class="intel-shell">
             <div class="detail-header">
               <button type="button" id="backToAnalytics" class="back-analytics">← Analytics Hub</button>
-              <div>
-                <span class="intel-eyebrow" id="detailEyebrow">B4N INTELLIGENCE</span>
-                <h1 id="detailTitle">Analytics</h1>
-                <p id="detailDescription"></p>
-              </div>
+              <div><span class="intel-eyebrow" id="detailEyebrow">B4N INTELLIGENCE</span><h1 id="detailTitle">Analytics</h1><p id="detailDescription"></p></div>
               <span id="detailStatus" class="status-chip pending">Pending</span>
             </div>
             <div id="detailKpis" class="detail-kpi-grid"></div>
             <div id="detailFeatureGrid" class="detail-feature-grid"></div>
-            <article class="intel-card">
-              <div class="intel-card-head"><div><strong>Data Readiness & Methodology</strong><span id="detailMethodologyLabel">Current state</span></div></div>
-              <div id="detailReadiness" class="readiness-box"></div>
-            </article>
+            <article class="intel-card"><div class="intel-card-head"><div><strong>Data Readiness & Methodology</strong><span id="detailMethodologyLabel">Current state</span></div></div><div id="detailReadiness" class="readiness-box"></div></article>
           </div>
         </section>
 
-        
         <section id="salonUserIntelView" class="view-panel salon-user-intel-view" aria-label="Salon User Intelligence">
           <div class="sui-shell">
-            <div class="sui-head">
-              <div>
-                <span class="sui-eyebrow">B4N DEVELOPER PRODUCT INTELLIGENCE</span>
-                <h1>Salon User Intelligence</h1>
-                <p>How owners, admins, managers and staff actually use Book4Now — completely separate from customer booking behavior.</p>
-              </div>
-              <span id="suiTrackingStatus" class="sui-status pending">Checking…</span>
-            </div>
-
-            <div class="sui-kpis">
-              <article><span>Tracked Events</span><strong id="suiEvents">—</strong></article>
-              <article><span>Sessions</span><strong id="suiSessions">—</strong></article>
-              <article><span>Active Users · 30d</span><strong id="suiUsers">—</strong></article>
-              <article><span>Errors · 30d</span><strong id="suiErrors">—</strong></article>
-              <article><span>Menu Changes · 30d</span><strong id="suiMenuChanges">—</strong></article>
-            </div>
-
-            <div class="sui-grid">
-              <article class="sui-card">
-                <div class="sui-card-head"><strong>Feature Adoption & Usage</strong><span>Role-aware</span></div>
-                <div id="suiFeatures" class="sui-list"><p>Waiting for telemetry.</p></div>
-              </article>
-              <article class="sui-card">
-                <div class="sui-card-head"><strong>Usage by Salon Role</strong><span>Identity verified</span></div>
-                <div id="suiRoles" class="sui-list"><p>Waiting for telemetry.</p></div>
-              </article>
-            </div>
-
-            <div class="sui-grid">
-              <article class="sui-card">
-                <div class="sui-card-head"><strong>Menu Structure Intelligence</strong><span>Operational baseline</span></div>
-                <div id="suiMenuStructure" class="sui-menu-baseline"><p>Loading real menu baseline…</p></div>
-              </article>
-              <article class="sui-card">
-                <div class="sui-card-head"><strong>Menu Fine-Tuning Opportunities</strong><span>Evidence based</span></div>
-                <div id="suiMenuInsights" class="sui-list"><p>Loading…</p></div>
-              </article>
-            </div>
-
-            <div class="sui-grid">
-              <article class="sui-card">
-                <div class="sui-card-head"><strong>Module Transition Analysis</strong><span>Admin workflow</span></div>
-                <div id="suiTransitions" class="sui-list"><p>Tracker data required.</p></div>
-              </article>
-              <article class="sui-card">
-                <div class="sui-card-head"><strong>Usage Sequence Patterns</strong><span>Efficient · Friction · Power User</span></div>
-                <div id="suiSequences" class="sui-list"><p>Tracker data required.</p></div>
-              </article>
-            </div>
-
-            <article class="sui-card sui-architecture">
-              <strong>Separate intelligence boundary</strong>
-              <div><b>Salon Admin UI</b><i>→</i><b>Verified JWT</b><i>→</i><b>Salon User Worker</b><i>→</i><b>salon_user_intelligence</b><i>→</i><b>Developer Insights</b></div>
-              <small>Customer behavior remains in behavior.* and is never mixed with salon-user product analytics.</small>
-            </article>
+            <div class="sui-head"><div><span class="sui-eyebrow">B4N DEVELOPER PRODUCT INTELLIGENCE</span><h1>Salon User Intelligence</h1><p>How owners, admins, managers and staff actually use Book4Now — completely separate from customer booking behavior.</p></div><span id="suiTrackingStatus" class="sui-status pending">Checking…</span></div>
+            <div class="sui-kpis"><article><span>Tracked Events</span><strong id="suiEvents">—</strong></article><article><span>Sessions</span><strong id="suiSessions">—</strong></article><article><span>Active Users · 30d</span><strong id="suiUsers">—</strong></article><article><span>Errors · 30d</span><strong id="suiErrors">—</strong></article><article><span>Menu Changes · 30d</span><strong id="suiMenuChanges">—</strong></article></div>
+            <div class="sui-grid"><article class="sui-card"><div class="sui-card-head"><strong>Feature Adoption & Usage</strong><span>Role-aware</span></div><div id="suiFeatures" class="sui-list"><p>Waiting for telemetry.</p></div></article><article class="sui-card"><div class="sui-card-head"><strong>Usage by Salon Role</strong><span>Identity verified</span></div><div id="suiRoles" class="sui-list"><p>Waiting for telemetry.</p></div></article></div>
+            <div class="sui-grid"><article class="sui-card"><div class="sui-card-head"><strong>Menu Structure Intelligence</strong><span>Operational baseline</span></div><div id="suiMenuStructure" class="sui-menu-baseline"><p>Loading real menu baseline…</p></div></article><article class="sui-card"><div class="sui-card-head"><strong>Menu Fine-Tuning Opportunities</strong><span>Evidence based</span></div><div id="suiMenuInsights" class="sui-list"><p>Loading…</p></div></article></div>
+            <div class="sui-grid"><article class="sui-card"><div class="sui-card-head"><strong>Module Transition Analysis</strong><span>Admin workflow</span></div><div id="suiTransitions" class="sui-list"><p>Tracker data required.</p></div></article><article class="sui-card"><div class="sui-card-head"><strong>Usage Sequence Patterns</strong><span>Efficient · Friction · Power User</span></div><div id="suiSequences" class="sui-list"><p>Tracker data required.</p></div></article></div>
+            <article class="sui-card sui-architecture"><strong>Separate intelligence boundary</strong><div><b>Salon Admin UI</b><i>→</i><b>Verified JWT</b><i>→</i><b>Salon User Worker</b><i>→</i><b>salon_user_intelligence</b><i>→</i><b>Developer Insights</b></div><small>Customer behavior remains in behavior.* and is never mixed with salon-user product analytics.</small></article>
           </div>
         </section>
 
         <section id="geoView" class="view-panel geo-view" aria-label="Geo Analytics">
           <div class="geo-shell">
-            <div class="geo-topline">
-              <div>
-                <span class="geo-eyebrow">B4N LOCATION INTELLIGENCE</span>
-                <h1>Geo Analytics · Sri Lanka</h1>
-                <p>Customer, booking and revenue intelligence by salon location and region.</p>
-              </div>
-              <div class="geo-controls">
-                <span class="live-dot" id="geoConnectionStatus">● Connecting API…</span>
-                <button type="button" id="resetSriLankaMap">Sri Lanka view</button>
-                <select id="geoPeriod" aria-label="Geo analytics period"><option>Last 7 days</option><option>Last 30 days</option><option>This quarter</option></select>
-              </div>
-            </div>
-
-            <div class="geo-kpi-grid">
-              <article><span>Total Customers</span><strong id="geoCustomers">—</strong><em class="protected-copy">Protected analytics</em></article>
-              <article><span>Total Revenue</span><strong id="geoRevenue">—</strong><em class="protected-copy">Protected analytics</em></article>
-              <article><span>Total Bookings</span><strong id="geoBookings">—</strong><em class="protected-copy">Protected analytics</em></article>
-              <article><span>New Customers</span><strong id="geoNewCustomers">—</strong><em class="protected-copy">Protected analytics</em></article>
-              <article><span>Active Salons</span><strong id="activeSalonCount">—</strong><em id="geoLiveState">Loading live data…</em></article>
-              <article><span>Avg. Booking Value</span><strong id="geoAvgBooking">—</strong><em class="protected-copy">Protected analytics</em></article>
-            </div>
-
+            <div class="geo-topline"><div><span class="geo-eyebrow">B4N LOCATION INTELLIGENCE</span><h1>Geo Analytics · Sri Lanka</h1><p>Customer, booking and revenue intelligence by salon location and region.</p></div><div class="geo-controls"><span class="live-dot" id="geoConnectionStatus">● Connecting API…</span><button type="button" id="resetSriLankaMap">Sri Lanka view</button><select id="geoPeriod" aria-label="Geo analytics period"><option>Last 7 days</option><option>Last 30 days</option><option>This quarter</option></select></div></div>
+            <div class="geo-kpi-grid"><article><span>Total Customers</span><strong id="geoCustomers">—</strong><em class="protected-copy">Protected analytics</em></article><article><span>Total Revenue</span><strong id="geoRevenue">—</strong><em class="protected-copy">Protected analytics</em></article><article><span>Total Bookings</span><strong id="geoBookings">—</strong><em class="protected-copy">Protected analytics</em></article><article><span>New Customers</span><strong id="geoNewCustomers">—</strong><em class="protected-copy">Protected analytics</em></article><article><span>Active Salons</span><strong id="activeSalonCount">—</strong><em id="geoLiveState">Loading live data…</em></article><article><span>Avg. Booking Value</span><strong id="geoAvgBooking">—</strong><em class="protected-copy">Protected analytics</em></article></div>
             <div class="geo-main-grid">
-              <div class="geo-stack">
-                <article class="geo-card">
-                  <div class="geo-card-head"><strong>Regional Customer Distribution</strong><span>Readiness</span></div>
-                  <div class="geo-empty-state"><b>Multi-location data required</b><p>Current source contains one mapped salon. Regional customer percentages will appear after multiple salons/branches and customer geography are connected.</p></div>
-                </article>
-                <article class="geo-card">
-                  <div class="geo-card-head"><strong>Regional Revenue</strong><span>Readiness</span></div>
-                  <div class="geo-empty-state"><b>Not enough regional grain</b><p>Revenue-by-region will be calculated only from real salon/branch geography. No demo percentages are shown.</p></div>
-                </article>
-                <article class="geo-card">
-                  <div class="geo-card-head"><strong>Geo Booking Trend</strong><span>Readiness</span></div>
-                  <div class="geo-empty-state"><b>Branch/location attribution required</b><p>Booking trend by geography becomes available when booking facts carry authoritative salon/branch location keys.</p></div>
-                </article>
-              </div>
-
-              <article class="geo-map-card">
-                <div class="geo-map-head">
-                  <div><strong>Sri Lanka Salon Map</strong><small>Click a salon marker or list item to open its location</small></div>
-                  <span id="selectedSalonLabel">All mapped salons</span>
-                </div>
-                <div class="google-map-wrap" id="googleMapWrap">
-                  <iframe id="geoMapFrame" title="Google Map of Sri Lanka salon locations" src="https://www.google.com/maps?q=Sri%20Lanka&z=7&output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-                  <div id="geoHotspots" class="geo-hotspots" aria-label="Salon map markers"></div>
-                  <div class="map-gradient-legend"><span>Lower activity</span><i></i><span>Higher activity</span></div>
-                </div>
-                <div class="geo-map-foot">
-                  <span>Google Maps · Salon address links</span>
-                  <a id="openSelectedMap" href="https://www.google.com/maps/search/?api=1&query=Sri%20Lanka" target="_blank" rel="noopener">Open selected location ↗</a>
-                </div>
-              </article>
-
-              <div class="geo-stack">
-                <article class="geo-card">
-                  <div class="geo-card-head"><strong>Geo Opportunity Intelligence</strong><span>Planned</span></div>
-                  <div class="geo-empty-state"><b>Opportunity model ready for multi-salon data</b><p>Planned signals: customer density, demand gap, conversion, revenue, capacity, RFM mix, churn risk and service affinity by geography.</p></div>
-                </article>
-                <article class="geo-card">
-                  <div class="geo-card-head"><strong>Top Performing Areas</strong><span>Live-data only</span></div>
-                  <div class="geo-empty-state"><b>Waiting for sufficient geographic coverage</b><p>Areas will be ranked only when real multi-location performance exists.</p></div>
-                </article>
-              </div>
+              <div class="geo-stack"><article class="geo-card"><div class="geo-card-head"><strong>Regional Customer Distribution</strong><span>Readiness</span></div><div class="geo-empty-state"><b>Multi-location data required</b><p>Current source contains one mapped salon. Regional customer percentages will appear after multiple salons/branches and customer geography are connected.</p></div></article><article class="geo-card"><div class="geo-card-head"><strong>Regional Revenue</strong><span>Readiness</span></div><div class="geo-empty-state"><b>Not enough regional grain</b><p>Revenue-by-region will be calculated only from real salon/branch geography. No demo percentages are shown.</p></div></article><article class="geo-card"><div class="geo-card-head"><strong>Geo Booking Trend</strong><span>Readiness</span></div><div class="geo-empty-state"><b>Branch/location attribution required</b><p>Booking trend by geography becomes available when booking facts carry authoritative salon/branch location keys.</p></div></article></div>
+              <article class="geo-map-card"><div class="geo-map-head"><div><strong>Sri Lanka Salon Map</strong><small>Click a salon marker or list item to open its location</small></div><span id="selectedSalonLabel">All mapped salons</span></div><div class="google-map-wrap" id="googleMapWrap"><iframe id="geoMapFrame" title="Google Map of Sri Lanka salon locations" src="https://www.google.com/maps?q=Sri%20Lanka&z=7&output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe><div id="geoHotspots" class="geo-hotspots" aria-label="Salon map markers"></div><div class="map-gradient-legend"><span>Lower activity</span><i></i><span>Higher activity</span></div></div><div class="geo-map-foot"><span>Google Maps · Salon address links</span><a id="openSelectedMap" href="https://www.google.com/maps/search/?api=1&query=Sri%20Lanka" target="_blank" rel="noopener">Open selected location ↗</a></div></article>
+              <div class="geo-stack"><article class="geo-card"><div class="geo-card-head"><strong>Geo Opportunity Intelligence</strong><span>Planned</span></div><div class="geo-empty-state"><b>Opportunity model ready for multi-salon data</b><p>Planned signals: customer density, demand gap, conversion, revenue, capacity, RFM mix, churn risk and service affinity by geography.</p></div></article><article class="geo-card"><div class="geo-card-head"><strong>Top Performing Areas</strong><span>Live-data only</span></div><div class="geo-empty-state"><b>Waiting for sufficient geographic coverage</b><p>Areas will be ranked only when real multi-location performance exists.</p></div></article></div>
             </div>
-
-            <div class="geo-bottom-grid">
-              <article class="geo-card geo-salons-card">
-                <div class="geo-card-head"><strong>Salon Locations</strong><span id="salonLocationSubtitle">Live Lovable location records</span></div>
-                <div id="salonLocationList" class="salon-location-list"></div>
-              </article>
-              <article class="geo-card">
-                <div class="geo-card-head"><strong>Location Intelligence</strong><span>Methodology</span></div>
-                <div class="geo-insight"><b>Live map source</b><p>Salon address, latitude, longitude and Google Maps URL come directly from the operational database.</p></div>
-                <div class="geo-insight"><b>Protected business metrics</b><p>Bookings, customers and revenue load through the authenticated Intelligence API.</p></div>
-                <div class="geo-insight"><b>Regional analytics</b><p>Shown only when sufficient real geographic data exists—never from demo percentages.</p></div>
-              </article>
-            </div>
+            <div class="geo-bottom-grid"><article class="geo-card geo-salons-card"><div class="geo-card-head"><strong>Salon Locations</strong><span id="salonLocationSubtitle">Live Lovable location records</span></div><div id="salonLocationList" class="salon-location-list"></div></article><article class="geo-card"><div class="geo-card-head"><strong>Location Intelligence</strong><span>Methodology</span></div><div class="geo-insight"><b>Live map source</b><p>Salon address, latitude, longitude and Google Maps URL come directly from the operational database.</p></div><div class="geo-insight"><b>Protected business metrics</b><p>Bookings, customers and revenue load through the authenticated Intelligence API.</p></div><div class="geo-insight"><b>Regional analytics</b><p>Shown only when sufficient real geographic data exists—never from demo percentages.</p></div></article></div>
           </div>
         </section>
       </section>
@@ -350,41 +215,16 @@
       <span class="auth-kicker">SECURE STAFF ACCESS</span>
       <h2 id="authTitle">Sign in to live intelligence</h2>
       <p>Use your registered Book4Now staff account.</p>
-
-      <div class="auth-method-tabs" role="tablist" aria-label="Sign in method">
-        <button type="button" class="auth-method active" id="passwordTab">Password</button>
-        <button type="button" class="auth-method" id="magicTab">Magic link</button>
-      </div>
-
-      <form id="authForm" class="auth-method-panel">
-        <label>Email
-          <input id="authEmail" type="email" autocomplete="username" required placeholder="staff@example.com">
-        </label>
-        <label>Password
-          <input id="authPassword" type="password" autocomplete="current-password" required minlength="6" placeholder="••••••••">
-        </label>
-        <button type="submit" class="auth-submit" id="authSubmit">Sign in</button>
-      </form>
-
-      <form id="magicLinkForm" class="auth-method-panel" hidden>
-        <label>Registered email
-          <input id="magicEmail" type="email" autocomplete="email" required placeholder="staff@example.com">
-        </label>
-        <button type="submit" class="auth-submit" id="magicSubmit">Send magic link</button>
-        <p class="magic-help">We will email a one-time sign-in link. Only an existing account can use this option.</p>
-      </form>
-
+      <div class="auth-method-tabs" role="tablist" aria-label="Sign in method"><button type="button" class="auth-method active" id="passwordTab">Password</button><button type="button" class="auth-method" id="magicTab">Magic link</button></div>
+      <form id="authForm" class="auth-method-panel"><label>Email<input id="authEmail" type="email" autocomplete="username" required placeholder="staff@example.com"></label><label>Password<input id="authPassword" type="password" autocomplete="current-password" required minlength="6" placeholder="••••••••"></label><button type="submit" class="auth-submit" id="authSubmit">Sign in</button></form>
+      <form id="magicLinkForm" class="auth-method-panel" hidden><label>Registered email<input id="magicEmail" type="email" autocomplete="email" required placeholder="staff@example.com"></label><button type="submit" class="auth-submit" id="magicSubmit">Send magic link</button><p class="magic-help">We will email a one-time sign-in link. Only an existing account can use this option.</p></form>
       <div class="auth-message" id="authMessage" role="status"></div>
-      <div class="auth-security-note">
-        New users are not created by Magic Link. After authentication, B4NCRM verifies the account has an approved staff role before loading protected analytics.
-      </div>
+      <div class="auth-security-note">New users are not created by Magic Link. After authentication, B4NCRM verifies the account has an approved staff role before loading protected analytics.</div>
     </section>
   </div>
-
-
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.js"></script>
   <script src="script.js"></script>
-
-    <script src="salon-user-intelligence.js"></script>
+  <script src="salon-user-intelligence.js"></script>
+  <script src="executive-crm-dashboard.js"></script>
 </body>
 </html>
